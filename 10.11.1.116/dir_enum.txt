@@ -1,0 +1,4 @@
+[2K[32m                        [Status: 200, Size: 105, Words: 2, Lines: 9, Duration: 277ms][0m
+[2K[34madministrator           [Status: 301, Size: 318, Words: 20, Lines: 10, Duration: 241ms][0m
+[2K[34mdb                      [Status: 301, Size: 307, Words: 20, Lines: 10, Duration: 244ms][0m
+[2K[32mindex.html              [Status: 200, Size: 105, Words: 2, Lines: 9, Duration: 247ms][0m

