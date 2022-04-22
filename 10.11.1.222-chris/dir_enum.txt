@@ -1,0 +1,5 @@
+[2K                        [Status: [32m200[0m, Size: 11383, Words: 4208, Lines: 200]
+[2Kblog                    [Status: [34m302[0m, Size: 0, Words: 1, Lines: 1]
+[2Kdocs                    [Status: [34m302[0m, Size: 0, Words: 1, Lines: 1]
+[2Kfavicon.ico             [Status: [32m200[0m, Size: 21630, Words: 19, Lines: 22]
+[2Kmanager                 [Status: [34m302[0m, Size: 0, Words: 1, Lines: 1]

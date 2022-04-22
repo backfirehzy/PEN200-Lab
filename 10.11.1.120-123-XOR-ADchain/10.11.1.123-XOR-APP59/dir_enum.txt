@@ -1,0 +1,25 @@
+[2K                        [Status: [34m302[0m, Size: 0, Words: 1, Lines: 1]
+[2K.htaccess               [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2K.htpasswd               [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2K.hta                    [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kaux                     [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2KBooks                   [Status: [34m301[0m, Size: 334, Words: 22, Lines: 10]
+[2Kbooks                   [Status: [34m301[0m, Size: 334, Words: 22, Lines: 10]
+[2Kcgi-bin/                [Status: [33m403[0m, Size: 1057, Words: 103, Lines: 43]
+[2Kcom1                    [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kcom3                    [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kcom2                    [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kcon                     [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kdashboard               [Status: [34m301[0m, Size: 338, Words: 22, Lines: 10]
+[2Kfavicon.ico             [Status: [32m200[0m, Size: 30894, Words: 412, Lines: 6]
+[2Kimg                     [Status: [34m301[0m, Size: 332, Words: 22, Lines: 10]
+[2Kindex.php               [Status: [34m302[0m, Size: 0, Words: 1, Lines: 1]
+[2Klicenses                [Status: [33m403[0m, Size: 1202, Words: 127, Lines: 46]
+[2Klpt1                    [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Klpt2                    [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Knul                     [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kphpmyadmin              [Status: [33m403[0m, Size: 1202, Words: 127, Lines: 46]
+[2Kprn                     [Status: [33m403[0m, Size: 1043, Words: 102, Lines: 43]
+[2Kserver-info             [Status: [33m403[0m, Size: 1202, Words: 127, Lines: 46]
+[2Kserver-status           [Status: [33m403[0m, Size: 1202, Words: 127, Lines: 46]
+[2Kwebalizer               [Status: [33m403[0m, Size: 1202, Words: 127, Lines: 46]

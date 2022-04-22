@@ -1,0 +1,68 @@
+# Nmap 7.91 scan initiated Tue Apr  5 17:41:46 2022 as: nmap -T4 -A -oN ports_scan.txt 10.11.1.222
+Nmap scan report for 10.11.1.222
+Host is up (0.26s latency).
+Not shown: 992 closed ports
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+1521/tcp open  oracle-tns    Oracle TNS listener 1.2.0.0.0 (unauthorized)
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: CHRIS
+|   NetBIOS_Domain_Name: CHRIS
+|   NetBIOS_Computer_Name: CHRIS
+|   DNS_Domain_Name: chris
+|   DNS_Computer_Name: chris
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-04-05T07:42:53+00:00
+| ssl-cert: Subject: commonName=chris
+| Not valid before: 2022-02-20T07:04:35
+|_Not valid after:  2022-08-22T07:04:35
+|_ssl-date: 2022-04-05T07:43:05+00:00; -1s from scanner time.
+5500/tcp open  ssl/http      Oracle XML DB Enterprise Edition httpd
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Digest nonce=624BF305AB976FFE4A766A797BA3C7A0968D8EA4BABF550B qop=auth realm=XDB algorithm=MD5
+|_http-server-header: Oracle XML DB/Oracle Database
+|_http-title: 401 Unauthorized
+| ssl-cert: Subject: commonName=XE
+| Not valid before: 2019-05-07T09:25:59
+|_Not valid after:  2069-05-07T09:25:59
+8009/tcp open  ajp13         Apache Jserv (Protocol v1.3)
+| ajp-methods: 
+|_  Supported methods: GET HEAD POST OPTIONS
+8080/tcp open  http          Apache Tomcat 9.0.19
+|_http-favicon: Apache Tomcat
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title: Apache Tomcat/9.0.19
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.91%E=4%D=4/5%OT=135%CT=1%CU=41752%PV=Y%DS=2%DC=T%G=Y%TM=624BF30
+OS:C%P=x86_64-pc-linux-gnu)SEQ(SP=105%GCD=1%ISR=107%TI=I%II=I%SS=S%TS=U)OPS
+OS:(O1=M54ENW8NNS%O2=M54ENW8NNS%O3=M54ENW8%O4=M54ENW8NNS%O5=M54ENW8NNS%O6=M
+OS:54ENNS)WIN(W1=FFFF%W2=FFFF%W3=FFFF%W4=FFFF%W5=FFFF%W6=FF70)ECN(R=Y%DF=Y%
+OS:T=80%W=FFFF%O=M54ENW8NNS%CC=Y%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)
+OS:T2(R=N)T3(R=N)T4(R=N)T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=
+OS:N)T7(R=N)U1(R=Y%DF=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G
+OS:)IE(R=Y%DFI=N%T=80%CD=Z)
+
+Network Distance: 2 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -1s, deviation: 0s, median: -1s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-04-05T07:42:54
+|_  start_date: N/A
+
+TRACEROUTE (using port 995/tcp)
+HOP RTT       ADDRESS
+1   341.08 ms 192.168.119.1
+2   341.20 ms 10.11.1.222
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Apr  5 17:43:08 2022 -- 1 IP address (1 host up) scanned in 81.75 seconds

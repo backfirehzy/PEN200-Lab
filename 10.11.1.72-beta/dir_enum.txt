@@ -1,0 +1,8 @@
+[2K.htpasswd               [Status: 403, Size: 287, Words: 21, Lines: 11]
+[2K.htaccess               [Status: 403, Size: 287, Words: 21, Lines: 11]
+[2K.hta                    [Status: 403, Size: 282, Words: 21, Lines: 11]
+[2K                        [Status: 200, Size: 177, Words: 22, Lines: 5]
+[2Kcgi-bin/                [Status: 403, Size: 286, Words: 21, Lines: 11]
+[2Kindex                   [Status: 200, Size: 177, Words: 22, Lines: 5]
+[2Kindex.html              [Status: 200, Size: 177, Words: 22, Lines: 5]
+[2Kserver-status           [Status: 403, Size: 291, Words: 21, Lines: 11]

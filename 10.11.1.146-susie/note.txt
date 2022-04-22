@@ -1,0 +1,5 @@
+Metasploit
+
+use linux/samba/is_known_pipename
+set SMB::AlwaysEncrypt false
+set SMB::ProtocolVersion 1

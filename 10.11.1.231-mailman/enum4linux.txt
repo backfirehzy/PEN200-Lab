@@ -1,0 +1,168 @@
+[92mENUM4LINUX - next generation[0m
+
+ ==========================
+|    Target Information    |
+ ==========================
+[94m[*] Target ........... 10.11.1.231[0m
+[94m[*] Username ......... ''[0m
+[94m[*] Random Username .. 'cjxqjfze'[0m
+[94m[*] Password ......... ''[0m
+[94m[*] Timeout .......... 5 second(s)[0m
+
+ ===================================
+|    Service Scan on 10.11.1.231    |
+ ===================================
+[94m[*] Checking LDAP[0m
+[91m[-] Could not connect to LDAP on 389/tcp: connection refused[0m
+[94m[*] Checking LDAPS[0m
+[91m[-] Could not connect to LDAPS on 636/tcp: connection refused[0m
+[94m[*] Checking SMB[0m
+[92m[+] SMB is accessible on 445/tcp[0m
+[94m[*] Checking SMB over NetBIOS[0m
+[92m[+] SMB over NetBIOS is accessible on 139/tcp[0m
+
+ ===================================================
+|    NetBIOS Names and Workgroup for 10.11.1.231    |
+ ===================================================
+[92m[+] Got domain/workgroup name: SECURITY[0m
+[92m[+] Full NetBIOS names information:
+- MAILMAN         <00> -         B <ACTIVE>  Workstation Service
+- MAILMAN         <03> -         B <ACTIVE>  Messenger Service
+- MAILMAN         <20> -         B <ACTIVE>  File Server Service
+- ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+- SECURITY        <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+- SECURITY        <1d> -         B <ACTIVE>  Master Browser
+- SECURITY        <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+- MAC Address = 00-00-00-00-00-00[0m
+
+ ========================================
+|    SMB Dialect Check on 10.11.1.231    |
+ ========================================
+[94m[*] Trying on 445/tcp[0m
+[92m[+] Supported dialects and settings:
+SMB 1.0: true
+SMB 2.02: true
+SMB 2.1: true
+SMB 3.0: true
+SMB1 only: false
+Preferred dialect: SMB 3.0
+SMB signing required: false[0m
+
+ ========================================
+|    RPC Session Check on 10.11.1.231    |
+ ========================================
+[94m[*] Check for null session[0m
+[92m[+] Server allows session using username '', password ''[0m
+[94m[*] Check for random user session[0m
+[92m[+] Server allows session using username 'cjxqjfze', password ''[0m
+[92m[H] Rerunning enumeration with user 'cjxqjfze' might give more results[0m
+
+ ==================================================
+|    Domain Information via RPC for 10.11.1.231    |
+ ==================================================
+[92m[+] Domain: SECURITY[0m
+[92m[+] SID: NULL SID[0m
+[92m[+] Host is part of a workgroup (not a domain)[0m
+
+ ==========================================================
+|    Domain Information via SMB session for 10.11.1.231    |
+ ==========================================================
+[94m[*] Enumerating via unauthenticated SMB session on 445/tcp[0m
+[92m[+] Found domain information via SMB
+NetBIOS computer name: MAILMAN
+NetBIOS domain name: ''
+DNS domain: local
+FQDN: mailman.local[0m
+
+ ==============================================
+|    OS Information via RPC for 10.11.1.231    |
+ ==============================================
+[94m[*] Enumerating via unauthenticated SMB session on 445/tcp[0m
+[92m[+] Found OS information via SMB[0m
+[94m[*] Enumerating via 'srvinfo'[0m
+[92m[+] Found OS information via 'srvinfo'[0m
+[92m[+] After merging OS information we have the following result:
+OS: Linux/Unix (Samba 4.2.10-Debian)
+OS version: '6.1'
+OS release: ''
+OS build: '0'
+Native OS: Windows 6.1
+Native LAN manager: Samba 4.2.10-Debian
+Platform id: '500'
+Server type: '0x809a03'
+Server type string: Wk Sv PrQ Unx NT SNT Samba 4.2.10-Debian[0m
+
+ ====================================
+|    Users via RPC on 10.11.1.231    |
+ ====================================
+[94m[*] Enumerating users via 'querydispinfo'[0m
+[92m[+] Found 0 users via 'querydispinfo'[0m
+[94m[*] Enumerating users via 'enumdomusers'[0m
+[91m[-] Could not find users via 'enumdomusers': timed out[0m
+
+ =====================================
+|    Groups via RPC on 10.11.1.231    |
+ =====================================
+[94m[*] Enumerating local groups[0m
+[92m[+] Found 0 group(s) via 'enumalsgroups domain'[0m
+[94m[*] Enumerating builtin groups[0m
+[91m[-] Could not get groups via 'enumalsgroups builtin': timed out[0m
+[94m[*] Enumerating domain groups[0m
+[91m[-] Could not get groups via 'enumdomgroups': timed out[0m
+
+ =====================================
+|    Shares via RPC on 10.11.1.231    |
+ =====================================
+[94m[*] Enumerating shares[0m
+[92m[+] Found 4 share(s):
+IPC$:
+  comment: IPC Service (Samba 4.2.10-Debian)
+  type: IPC
+docs:
+  comment: docs
+  type: Disk
+home:
+  comment: Home
+  type: Disk
+tmp:
+  comment: TMP
+  type: Disk[0m
+[94m[*] Testing share IPC$[0m
+[91m[-] Could not check share: STATUS_OBJECT_NAME_NOT_FOUND[0m
+[94m[*] Testing share docs[0m
+[92m[+] Mapping: OK, Listing: OK[0m
+[94m[*] Testing share home[0m
+[92m[+] Mapping: OK, Listing: OK[0m
+[94m[*] Testing share tmp[0m
+[92m[+] Mapping: OK, Listing: OK[0m
+
+ ========================================
+|    Policies via RPC for 10.11.1.231    |
+ ========================================
+[94m[*] Trying port 445/tcp[0m
+[92m[+] Found policy:
+domain_password_information:
+  pw_history_length: None
+  min_pw_length: 5
+  min_pw_age: none
+  max_pw_age: not set
+  pw_properties:
+  - DOMAIN_PASSWORD_COMPLEX: false
+  - DOMAIN_PASSWORD_NO_ANON_CHANGE: false
+  - DOMAIN_PASSWORD_NO_CLEAR_CHANGE: false
+  - DOMAIN_PASSWORD_LOCKOUT_ADMINS: false
+  - DOMAIN_PASSWORD_PASSWORD_STORE_CLEARTEXT: false
+  - DOMAIN_PASSWORD_REFUSE_PASSWORD_CHANGE: false
+domain_lockout_information:
+  lockout_observation_window: 30 minutes
+  lockout_duration: 30 minutes
+  lockout_threshold: None
+domain_logoff_information:
+  force_logoff_time: not set[0m
+
+ ========================================
+|    Printers via RPC for 10.11.1.231    |
+ ========================================
+[92m[+] No printers returned (this is not an error)[0m
+
+Completed after 79.96 seconds

@@ -1,0 +1,14 @@
+[2K                        [Status: [32m200[0m, Size: 5667, Words: 599, Lines: 127]
+[2Kincludes                [Status: [34m301[0m, Size: 150, Words: 9, Lines: 2]
+[2Kindex.html              [Status: [32m200[0m, Size: 5667, Words: 599, Lines: 127]
+[2Kmisc                    [Status: [34m301[0m, Size: 146, Words: 9, Lines: 2]
+[2KMisc                    [Status: [34m301[0m, Size: 146, Words: 9, Lines: 2]
+[2Kmodules                 [Status: [34m301[0m, Size: 149, Words: 9, Lines: 2]
+[2Kprofiles                [Status: [34m301[0m, Size: 150, Words: 9, Lines: 2]
+[2Krobots.txt              [Status: [32m200[0m, Size: 1561, Words: 128, Lines: 61]
+[2KScripts                 [Status: [34m301[0m, Size: 149, Words: 9, Lines: 2]
+[2Kscripts                 [Status: [34m301[0m, Size: 149, Words: 9, Lines: 2]
+[2KSites                   [Status: [34m301[0m, Size: 147, Words: 9, Lines: 2]
+[2Ksites                   [Status: [34m301[0m, Size: 147, Words: 9, Lines: 2]
+[2KThemes                  [Status: [34m301[0m, Size: 148, Words: 9, Lines: 2]
+[2Kthemes                  [Status: [34m301[0m, Size: 148, Words: 9, Lines: 2]

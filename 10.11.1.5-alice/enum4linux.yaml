@@ -1,0 +1,108 @@
+target:
+  host: 10.11.1.5
+  workgroup: ''
+credentials:
+  user: ''
+  password: ''
+  random_user: tvcgrycj
+services:
+  LDAP:
+    port: 389
+    accessible: false
+  LDAPS:
+    port: 636
+    accessible: false
+  SMB:
+    port: 445
+    accessible: true
+  SMB over NetBIOS:
+    port: 139
+    accessible: true
+workgroup: null
+nmblookup:
+- ALICE           <00> -         B <ACTIVE>  Workstation Service
+- ALICE           <20> -         B <ACTIVE>  File Server Service
+- THINC           <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+- ALICE           <03> -         B <ACTIVE>  Messenger Service
+- THINC           <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+- THINC           <1d> -         B <ACTIVE>  Master Browser
+- ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+- MAC Address = 00-50-56-BF-7D-DE
+smb_dialects: true
+sessions_possible: true
+null_session_possible: true
+user_session_possible: false
+random_user_session_possible: false
+domain_sid: null
+member_of: null
+domain_info:
+  NetBIOS computer name: ALICE
+  NetBIOS domain name: THINC
+  DNS domain: thinc.local
+  FQDN: alice.thinc.local
+os_info:
+  OS: Windows 5.1
+  OS version: '5.1'
+  OS release: not supported
+  OS build: not supported
+  Native OS: Windows 5.1
+  Native LAN manager: Windows 2000 LAN Manager
+  Platform id: null
+  Server type: null
+  Server type string: null
+users: null
+groups: null
+shares:
+  IPC$:
+    type: IPC
+    comment: Remote IPC
+    access:
+      mapping: ok
+      listing: denied
+  ADMIN$:
+    type: Disk
+    comment: Remote Admin
+    access:
+      mapping: denied
+      listing: n/a
+  C$:
+    type: Disk
+    comment: Default share
+    access:
+      mapping: denied
+      listing: n/a
+policy: null
+printers: ''
+errors:
+  services:
+    enum_services:
+    - 'Could not connect to LDAP on 389/tcp: connection refused'
+    - 'Could not connect to LDAPS on 636/tcp: connection refused'
+  random_user_session_possible:
+    enum_sessions:
+    - 'Could not establish random user session: STATUS_NO_LOGON_SERVERS'
+  workgroup:
+    enum_lsaquery_domain_info:
+    - 'Could not get domain information via ''lsaquery'': timed out'
+  domain_sid:
+    enum_lsaquery_domain_info:
+    - 'Could not get domain information via ''lsaquery'': timed out'
+  member_of:
+    enum_lsaquery_domain_info:
+    - 'Could not get domain information via ''lsaquery'': timed out'
+  os_info:
+    enum_os_info:
+    - 'Could not get OS info via ''srvinfo'': timed out'
+  users:
+    enum_users_rpc:
+    - 'Could not find users via ''querydispinfo'': STATUS_ACCESS_DENIED'
+    - 'Could not find users via ''enumdomusers'': STATUS_ACCESS_DENIED'
+  groups:
+    enum_groups_rpc:
+    - 'Could not get groups via ''enumalsgroups domain'': STATUS_ACCESS_DENIED'
+    - 'Could not get groups via ''enumalsgroups builtin'': STATUS_ACCESS_DENIED'
+    - 'Could not get groups via ''enumdomgroups'': STATUS_ACCESS_DENIED'
+  policy:
+    enum_policy:
+    - 'SMB connection error on port 445/tcp: STATUS_ACCESS_DENIED'
+    - 'SMB connection error on port 139/tcp: session failed'

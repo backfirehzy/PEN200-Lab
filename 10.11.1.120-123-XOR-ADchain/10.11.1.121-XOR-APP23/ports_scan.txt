@@ -1,0 +1,74 @@
+# Nmap 7.91 scan initiated Tue Apr 19 17:19:54 2022 as: nmap -T4 -A -oN ports_scan.txt 10.11.1.121
+Nmap scan report for 10.11.1.121
+Host is up (0.24s latency).
+Not shown: 995 closed ports
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+1433/tcp open  ms-sql-s      Microsoft SQL Server 2017 14.00.1000.00; RTM
+| ms-sql-ntlm-info: 
+|   Target_Name: xor
+|   NetBIOS_Domain_Name: xor
+|   NetBIOS_Computer_Name: XOR-APP23
+|   DNS_Domain_Name: xor.com
+|   DNS_Computer_Name: xor-app23.xor.com
+|   DNS_Tree_Name: xor.com
+|_  Product_Version: 10.0.17763
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Not valid before: 2022-04-19T06:50:39
+|_Not valid after:  2052-04-19T06:50:39
+|_ssl-date: 2022-04-19T07:21:07+00:00; -1s from scanner time.
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: xor
+|   NetBIOS_Domain_Name: xor
+|   NetBIOS_Computer_Name: XOR-APP23
+|   DNS_Domain_Name: xor.com
+|   DNS_Computer_Name: xor-app23.xor.com
+|   DNS_Tree_Name: xor.com
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-04-19T07:20:58+00:00
+| ssl-cert: Subject: commonName=xor-app23.xor.com
+| Not valid before: 2022-04-18T00:49:38
+|_Not valid after:  2022-10-18T00:49:38
+|_ssl-date: 2022-04-19T07:21:07+00:00; 0s from scanner time.
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.91%E=4%D=4/19%OT=135%CT=1%CU=33834%PV=Y%DS=2%DC=T%G=Y%TM=625E62
+OS:E5%P=x86_64-pc-linux-gnu)SEQ(SP=102%GCD=1%ISR=10F%TI=I%II=I%SS=S%TS=U)SE
+OS:Q(SP=102%GCD=1%ISR=10F%TI=I%TS=U)OPS(O1=M54ENW8NNS%O2=M54ENW8NNS%O3=M54E
+OS:NW8%O4=M54ENW8NNS%O5=M54ENW8NNS%O6=M54ENNS)WIN(W1=FFFF%W2=FFFF%W3=FFFF%W
+OS:4=FFFF%W5=FFFF%W6=FF70)ECN(R=Y%DF=Y%T=80%W=FFFF%O=M54ENW8NNS%CC=Y%Q=)ECN
+OS:(R=N)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)T1(R=N)T2(R=N)T3(R=N)T4(R=N)
+OS:T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T5(R=N)T6(R=N)T7(R=N)U1(R=
+OS:Y%DF=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)U1(R=N)IE(R=Y
+OS:%DFI=N%T=80%CD=Z)IE(R=N)
+
+Network Distance: 2 hops
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| ms-sql-info: 
+|   10.11.1.121:1433: 
+|     Version: 
+|       name: Microsoft SQL Server 2017 RTM
+|       number: 14.00.1000.00
+|       Product: Microsoft SQL Server 2017
+|       Service pack level: RTM
+|       Post-SP patches applied: false
+|_    TCP port: 1433
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-04-19T07:20:59
+|_  start_date: N/A
+
+TRACEROUTE (using port 21/tcp)
+HOP RTT       ADDRESS
+1   242.82 ms 192.168.119.1
+2   242.82 ms 10.11.1.121
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Apr 19 17:21:09 2022 -- 1 IP address (1 host up) scanned in 75.28 seconds

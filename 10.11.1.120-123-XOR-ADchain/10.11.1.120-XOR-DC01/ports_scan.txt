@@ -1,0 +1,60 @@
+# Nmap 7.91 scan initiated Wed Apr 20 21:28:03 2022 as: nmap -T4 -A -oN ports_scan.txt 10.11.1.120
+Nmap scan report for 10.11.1.120
+Host is up (0.23s latency).
+Not shown: 988 closed ports
+PORT     STATE SERVICE       VERSION
+53/tcp   open  domain        Simple DNS Plus
+88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-04-20 11:28:33Z)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: xor.com0., Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds?
+464/tcp  open  kpasswd5?
+593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped
+3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: xor.com0., Site: Default-First-Site-Name)
+3269/tcp open  tcpwrapped
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: xor
+|   NetBIOS_Domain_Name: xor
+|   NetBIOS_Computer_Name: XOR-DC01
+|   DNS_Domain_Name: xor.com
+|   DNS_Computer_Name: xor-dc01.xor.com
+|   DNS_Tree_Name: xor.com
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-04-20T11:29:09+00:00
+| ssl-cert: Subject: commonName=xor-dc01.xor.com
+| Not valid before: 2022-04-19T10:36:19
+|_Not valid after:  2022-10-19T10:36:19
+|_ssl-date: 2022-04-20T11:29:18+00:00; -1s from scanner time.
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.91%E=4%D=4/20%OT=53%CT=1%CU=43837%PV=Y%DS=2%DC=T%G=Y%TM=625FEE9
+OS:7%P=x86_64-pc-linux-gnu)SEQ(SP=100%GCD=1%ISR=10F%TI=I%II=I%SS=S%TS=U)SEQ
+OS:(SP=100%GCD=1%ISR=10E%TI=I%TS=U)OPS(O1=M54ENW8NNS%O2=M54ENW8NNS%O3=M54EN
+OS:W8%O4=M54ENW8NNS%O5=M54ENW8NNS%O6=M54ENNS)WIN(W1=FFFF%W2=FFFF%W3=FFFF%W4
+OS:=FFFF%W5=FFFF%W6=FF70)ECN(R=Y%DF=Y%T=80%W=FFFF%O=M54ENW8NNS%CC=Y%Q=)T1(R
+OS:=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=N)T5(R=Y%DF=Y%T=80
+OS:%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=N)T7(R=N)U1(R=Y%DF=N%T=80%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=80%CD=Z)
+
+Network Distance: 2 hops
+Service Info: Host: XOR-DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -1s, deviation: 0s, median: -1s
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2022-04-20T11:29:11
+|_  start_date: N/A
+
+TRACEROUTE (using port 995/tcp)
+HOP RTT       ADDRESS
+1   245.85 ms 192.168.119.1
+2   245.96 ms 10.11.1.120
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Apr 20 21:29:27 2022 -- 1 IP address (1 host up) scanned in 84.13 seconds
