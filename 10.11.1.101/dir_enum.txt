@@ -1,0 +1,7 @@
+[2K[32m                        [Status: 200, Size: 9499, Words: 569, Lines: 266, Duration: 247ms][0m
+[2K[34massets                  [Status: 301, Size: 311, Words: 20, Lines: 10, Duration: 256ms][0m
+[2K[34mimages                  [Status: 301, Size: 311, Words: 20, Lines: 10, Duration: 245ms][0m
+[2K[32mindex.html              [Status: 200, Size: 9499, Words: 569, Lines: 266, Duration: 244ms][0m
+[2K[34mmanual                  [Status: 301, Size: 311, Words: 20, Lines: 10, Duration: 243ms][0m
+[2K[34mpasswords               [Status: 301, Size: 314, Words: 20, Lines: 10, Duration: 243ms][0m
+[2K[32mrobots.txt              [Status: 200, Size: 36, Words: 3, Lines: 3, Duration: 244ms][0m

