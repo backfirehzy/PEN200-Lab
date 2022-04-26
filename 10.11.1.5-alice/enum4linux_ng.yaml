@@ -4,7 +4,7 @@ target:
 credentials:
   user: ''
   password: ''
-  random_user: tvcgrycj
+  random_user: zropjfsb
 services:
   LDAP:
     port: 389
@@ -18,7 +18,7 @@ services:
   SMB over NetBIOS:
     port: 139
     accessible: true
-workgroup: null
+workgroup: THINC
 nmblookup:
 - ALICE           <00> -         B <ACTIVE>  Workstation Service
 - ALICE           <20> -         B <ACTIVE>  File Server Service
@@ -27,14 +27,14 @@ nmblookup:
 - THINC           <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
 - THINC           <1d> -         B <ACTIVE>  Master Browser
 - ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
-- MAC Address = 00-50-56-BF-7D-DE
+- MAC Address = 00-50-56-86-02-8F
 smb_dialects: true
 sessions_possible: true
 null_session_possible: true
 user_session_possible: false
 random_user_session_possible: false
-domain_sid: null
-member_of: null
+domain_sid: S-1-5-21-4254429285-501146052-1604752251
+member_of: domain
 domain_info:
   NetBIOS computer name: ALICE
   NetBIOS domain name: THINC
@@ -47,9 +47,9 @@ os_info:
   OS build: not supported
   Native OS: Windows 5.1
   Native LAN manager: Windows 2000 LAN Manager
-  Platform id: null
-  Server type: null
-  Server type string: null
+  Platform id: '500'
+  Server type: '0x51003'
+  Server type string: Wk Sv NT PtB LMB
 users: null
 groups: null
 shares:
@@ -81,18 +81,6 @@ errors:
   random_user_session_possible:
     enum_sessions:
     - 'Could not establish random user session: STATUS_NO_LOGON_SERVERS'
-  workgroup:
-    enum_lsaquery_domain_info:
-    - 'Could not get domain information via ''lsaquery'': timed out'
-  domain_sid:
-    enum_lsaquery_domain_info:
-    - 'Could not get domain information via ''lsaquery'': timed out'
-  member_of:
-    enum_lsaquery_domain_info:
-    - 'Could not get domain information via ''lsaquery'': timed out'
-  os_info:
-    enum_os_info:
-    - 'Could not get OS info via ''srvinfo'': timed out'
   users:
     enum_users_rpc:
     - 'Could not find users via ''querydispinfo'': STATUS_ACCESS_DENIED'
