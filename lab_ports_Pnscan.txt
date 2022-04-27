@@ -1,0 +1,40 @@
+# Nmap 7.92 scan initiated Wed Apr 27 22:55:36 2022 as: nmap -T4 -Pn -sV -iL filter_IPs.txt -oN lab_ports_Pnscan.txt
+Nmap scan report for 10.11.1.7
+Host is up (0.25s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE       VERSION
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.11.1.10
+Host is up (0.25s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.11.1.75
+Host is up.
+All 1000 scanned ports on 10.11.1.75 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+
+Nmap scan report for 10.11.1.229
+Host is up (0.25s latency).
+Not shown: 994 filtered tcp ports (no-response)
+PORT     STATE SERVICE       VERSION
+25/tcp   open  smtp          hMailServer smtpd
+80/tcp   open  http          Microsoft IIS httpd 10.0
+110/tcp  open  pop3          hMailServer pop3d
+143/tcp  open  imap          hMailServer imapd
+587/tcp  open  smtp          hMailServer smtpd
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: Host: MAIL; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.11.1.247
+Host is up (0.25s latency).
+Not shown: 999 filtered tcp ports (no-response)
+PORT     STATE SERVICE            VERSION
+3389/tcp open  ssl/ms-wbt-server?
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Apr 27 22:58:05 2022 -- 5 IP addresses (5 hosts up) scanned in 148.86 seconds
