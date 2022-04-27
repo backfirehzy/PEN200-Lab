@@ -1,0 +1,59 @@
+[2K[32m[Status: 200, Size: 1433, Words: 131, Lines: 40, Duration: 348ms][0m
+[2K| URL | http://10.11.1.10/
+[2K    * FUZZ: 
+
+[2K[34m[Status: 301, Size: 147, Words: 9, Lines: 2, Duration: 239ms][0m
+[2K| URL | http://10.11.1.10/cfide
+[2K| --> | http://10.11.1.10/cfide/
+[2K    * FUZZ: cfide
+
+[2K[34m[Status: 301, Size: 148, Words: 9, Lines: 2, Duration: 247ms][0m
+[2K| URL | http://10.11.1.10/cfdocs
+[2K| --> | http://10.11.1.10/cfdocs/
+[2K    * FUZZ: cfdocs
+
+[2K[34m[Status: 301, Size: 161, Words: 9, Lines: 2, Duration: 238ms][0m
+[2K| URL | http://10.11.1.10/cfide/administrator
+[2K| --> | http://10.11.1.10/cfide/administrator/
+[2K    * FUZZ: administrator
+
+[2K[34m[Status: 301, Size: 155, Words: 9, Lines: 2, Duration: 235ms][0m
+[2K| URL | http://10.11.1.10/cfide/classes
+[2K| --> | http://10.11.1.10/cfide/classes/
+[2K    * FUZZ: classes
+
+[2K[34m[Status: 301, Size: 153, Words: 9, Lines: 2, Duration: 236ms][0m
+[2K| URL | http://10.11.1.10/cfide/debug
+[2K| --> | http://10.11.1.10/cfide/debug/
+[2K    * FUZZ: debug
+
+[2K[34m[Status: 301, Size: 154, Words: 9, Lines: 2, Duration: 242ms][0m
+[2K| URL | http://10.11.1.10/cfide/Images
+[2K| --> | http://10.11.1.10/cfide/Images/
+[2K    * FUZZ: Images
+
+[2K[34m[Status: 301, Size: 154, Words: 9, Lines: 2, Duration: 242ms][0m
+[2K| URL | http://10.11.1.10/cfide/images
+[2K| --> | http://10.11.1.10/cfide/images/
+[2K    * FUZZ: images
+
+[2K[34m[Status: 301, Size: 155, Words: 9, Lines: 2, Duration: 238ms][0m
+[2K| URL | http://10.11.1.10/cfide/Scripts
+[2K| --> | http://10.11.1.10/cfide/Scripts/
+[2K    * FUZZ: Scripts
+
+[2K[34m[Status: 301, Size: 155, Words: 9, Lines: 2, Duration: 238ms][0m
+[2K| URL | http://10.11.1.10/cfide/scripts
+[2K| --> | http://10.11.1.10/cfide/scripts/
+[2K    * FUZZ: scripts
+
+[2K[34m[Status: 301, Size: 155, Words: 9, Lines: 2, Duration: 235ms][0m
+[2K| URL | http://10.11.1.10/cfdocs/images
+[2K| --> | http://10.11.1.10/cfdocs/images/
+[2K    * FUZZ: images
+
+[2K[34m[Status: 301, Size: 155, Words: 9, Lines: 2, Duration: 236ms][0m
+[2K| URL | http://10.11.1.10/cfdocs/Images
+[2K| --> | http://10.11.1.10/cfdocs/Images/
+[2K    * FUZZ: Images
+
