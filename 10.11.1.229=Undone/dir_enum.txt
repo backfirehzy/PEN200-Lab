@@ -1,0 +1,13 @@
+[2K[32m                        [Status: 200, Size: 3615, Words: 605, Lines: 75, Duration: 1777ms][0m
+[2K[32mabout                   [Status: 200, Size: 2603, Words: 553, Lines: 57, Duration: 303ms][0m
+[2K[32mAbout                   [Status: 200, Size: 2603, Words: 553, Lines: 57, Duration: 303ms][0m
+[2K[32mcontact                 [Status: 200, Size: 2824, Words: 583, Lines: 65, Duration: 248ms][0m
+[2K[32mContact                 [Status: 200, Size: 2824, Words: 583, Lines: 65, Duration: 247ms][0m
+[2K[34mcontent                 [Status: 301, Size: 161, Words: 9, Lines: 2, Duration: 250ms][0m
+[2K[34mContent                 [Status: 301, Size: 161, Words: 9, Lines: 2, Duration: 251ms][0m
+[2K[32mdefault                 [Status: 200, Size: 3622, Words: 605, Lines: 75, Duration: 247ms][0m
+[2K[32mDefault                 [Status: 200, Size: 3622, Words: 605, Lines: 75, Duration: 247ms][0m
+[2K[32mfavicon.ico             [Status: 200, Size: 32038, Words: 13, Lines: 1, Duration: 271ms][0m
+[2K[34mfonts                   [Status: 301, Size: 159, Words: 9, Lines: 2, Duration: 579ms][0m
+[2K[34mscripts                 [Status: 301, Size: 161, Words: 9, Lines: 2, Duration: 271ms][0m
+[2K[34mScripts                 [Status: 301, Size: 161, Words: 9, Lines: 2, Duration: 261ms][0m
