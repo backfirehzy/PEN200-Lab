@@ -1,0 +1,45 @@
+# Nmap 7.92 scan initiated Sat Apr 30 19:41:58 2022 as: nmap -T4 -A -oN ports_scan.txt 10.11.1.44
+Nmap scan report for 10.11.1.44
+Host is up (0.25s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT     STATE SERVICE  VERSION
+22/tcp   open  ssh      OpenSSH 5.3p1 Debian 3ubuntu7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 65:63:69:c9:8b:96:b1:fb:be:d5:5c:f8:1e:7b:de:8f (DSA)
+|_  2048 28:99:c0:51:20:9b:31:e1:a4:fb:9a:17:46:52:cf:fc (RSA)
+8000/tcp open  ssl/http Rocket httpd 1.2.6 (Python 2.6.5)
+| sslv2: 
+|   SSLv2 supported
+|   ciphers: 
+|     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
+|     SSL2_DES_64_CBC_WITH_MD5
+|     SSL2_RC2_128_CBC_WITH_MD5
+|     SSL2_DES_192_EDE3_CBC_WITH_MD5
+|     SSL2_RC4_128_WITH_MD5
+|_    SSL2_RC4_128_EXPORT40_WITH_MD5
+|_http-server-header: Rocket 1.2.6 Python/2.6.5
+|_ssl-date: 2022-04-30T09:44:45+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=Tricia Admin/organizationName=Thinc/stateOrProvinceName=NY/countryName=US
+| Not valid before: 2013-08-17T11:55:25
+|_Not valid after:  2014-08-17T11:55:25
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.92%E=4%D=4/30%OT=22%CT=1%CU=36100%PV=Y%DS=2%DC=T%G=Y%TM=626D050
+OS:F%P=x86_64-pc-linux-gnu)SEQ(SP=104%GCD=2%ISR=10C%TI=Z%II=I%TS=8)OPS(O1=M
+OS:54EST11NW5%O2=M54EST11NW5%O3=M54ENNT11NW5%O4=M54EST11NW5%O5=M54EST11NW5%
+OS:O6=M54EST11)WIN(W1=16A0%W2=16A0%W3=16A0%W4=16A0%W5=16A0%W6=16A0)ECN(R=Y%
+OS:DF=Y%T=40%W=16D0%O=M54ENNSNW5%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=
+OS:0%Q=)T2(R=N)T3(R=N)T4(R=N)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+OS:T6(R=N)T7(R=N)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%
+OS:RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE (using port 5900/tcp)
+HOP RTT       ADDRESS
+1   337.53 ms 192.168.119.1
+2   337.63 ms 10.11.1.44
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Apr 30 19:44:47 2022 -- 1 IP address (1 host up) scanned in 168.80 seconds

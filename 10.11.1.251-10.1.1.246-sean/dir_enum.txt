@@ -1,0 +1,6 @@
+[2K[32m                        [Status: 200, Size: 13598, Words: 610, Lines: 206, Duration: 270ms][0m
+[2K[34mindex.php               [Status: 301, Size: 0, Words: 1, Lines: 1, Duration: 332ms][0m
+[2K[34mwp-includes             [Status: 301, Size: 319, Words: 20, Lines: 10, Duration: 302ms][0m
+[2K[34mwp-content              [Status: 301, Size: 318, Words: 20, Lines: 10, Duration: 303ms][0m
+[2K[34mwp-admin                [Status: 301, Size: 316, Words: 20, Lines: 10, Duration: 306ms][0m
+[2K[33mxmlrpc.php              [Status: 405, Size: 42, Words: 6, Lines: 1, Duration: 4452ms][0m
