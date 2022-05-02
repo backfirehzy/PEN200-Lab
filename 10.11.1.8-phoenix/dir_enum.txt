@@ -1,0 +1,5 @@
+[2K[32m                        [Status: 200, Size: 218, Words: 10, Lines: 12, Duration: 248ms][0m
+[2K[32mindex.html              [Status: 200, Size: 218, Words: 10, Lines: 12, Duration: 249ms][0m
+[2K[34minternal                [Status: 301, Size: 309, Words: 20, Lines: 10, Duration: 245ms][0m
+[2K[34mmanual                  [Status: 301, Size: 307, Words: 20, Lines: 10, Duration: 306ms][0m
+[2K[32mrobots.txt              [Status: 200, Size: 53, Words: 6, Lines: 4, Duration: 311ms][0m
