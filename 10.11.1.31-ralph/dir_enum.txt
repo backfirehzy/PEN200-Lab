@@ -1,0 +1,10 @@
+[2K[32m                        [Status: 200, Size: 1292, Words: 49, Lines: 225, Duration: 260ms][0m
+[2K[34m_private                [Status: 301, Size: 150, Words: 9, Lines: 2, Duration: 253ms][0m
+[2K[34m_vti_cnf                [Status: 301, Size: 150, Words: 9, Lines: 2, Duration: 248ms][0m
+[2K[34m_vti_txt                [Status: 301, Size: 150, Words: 9, Lines: 2, Duration: 243ms][0m
+[2K[34m_vti_pvt                [Status: 301, Size: 150, Words: 9, Lines: 2, Duration: 247ms][0m
+[2K[34m_vti_script             [Status: 301, Size: 153, Words: 9, Lines: 2, Duration: 247ms][0m
+[2K[34m_vti_log                [Status: 301, Size: 150, Words: 9, Lines: 2, Duration: 246ms][0m
+[2K[34maspnet_client           [Status: 301, Size: 155, Words: 9, Lines: 2, Duration: 242ms][0m
+[2K[34mImages                  [Status: 301, Size: 148, Words: 9, Lines: 2, Duration: 268ms][0m
+[2K[34mimages                  [Status: 301, Size: 148, Words: 9, Lines: 2, Duration: 271ms][0m

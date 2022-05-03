@@ -1,0 +1,15 @@
+# Nmap 7.92 scan initiated Tue May  3 11:17:51 2022 as: nmap -T4 -sV -oN ports_scan.txt 10.11.1.31
+Nmap scan report for 10.11.1.31
+Host is up (0.25s latency).
+Not shown: 994 filtered tcp ports (no-response)
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft IIS httpd 10.0
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds  Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+1433/tcp open  ms-sql-s      Microsoft SQL Server 2017 14.00.1000
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue May  3 11:18:17 2022 -- 1 IP address (1 host up) scanned in 25.74 seconds
