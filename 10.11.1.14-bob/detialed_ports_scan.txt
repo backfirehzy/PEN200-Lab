@@ -1,0 +1,33 @@
+# Nmap 7.92 scan initiated Wed May  4 23:15:48 2022 as: nmap -T4 -A -oN detialed_ports_scan.txt 10.11.1.14
+Nmap scan report for 10.11.1.14
+Host is up (0.24s latency).
+Not shown: 994 filtered tcp ports (no-response)
+PORT    STATE  SERVICE VERSION
+21/tcp  open   ftp     Microsoft ftpd
+| ftp-syst: 
+|_  SYST: Windows_NT
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| 01-17-07  07:42PM       <DIR>          AdminScripts
+| 01-17-07  07:43PM       <DIR>          ftproot
+| 01-17-07  07:43PM       <DIR>          iissamples
+| 01-17-07  07:43PM       <DIR>          Scripts
+|_05-04-22  04:33AM       <DIR>          wwwroot
+23/tcp  closed telnet
+25/tcp  closed smtp
+80/tcp  open   http    Microsoft IIS httpd 5.1
+| http-methods: 
+|_  Potentially risky methods: TRACE DELETE COPY MOVE PROPFIND PROPPATCH SEARCH MKCOL LOCK UNLOCK PUT
+|_http-title: Site doesn't have a title (text/html).
+| http-webdav-scan: 
+|   WebDAV type: Unknown
+|   Server Date: Wed, 04 May 2022 13:16:26 GMT
+|   Server Type: Microsoft-IIS/5.1
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, DELETE, COPY, MOVE, PROPFIND, PROPPATCH, SEARCH, MKCOL, LOCK, UNLOCK
+|_  Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|_http-server-header: Microsoft-IIS/5.1
+110/tcp closed pop3
+443/tcp open   https?
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed May  4 23:16:44 2022 -- 1 IP address (1 host up) scanned in 55.91 seconds

