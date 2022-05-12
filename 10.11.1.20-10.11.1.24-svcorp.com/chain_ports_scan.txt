@@ -1,0 +1,56 @@
+# Nmap 7.92 scan initiated Thu May  5 22:38:28 2022 as: nmap -T4 -sV --open -iL IPs.txt -oN chain_ports_scan.txt
+Nmap scan report for 10.11.1.20
+Host is up (0.25s latency).
+Not shown: 885 closed tcp ports (conn-refused), 104 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE       VERSION
+53/tcp   open  domain        Simple DNS Plus
+88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-05-05 12:38:49Z)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: svcorp.com0., Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds?
+593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped
+3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: svcorp.com0., Site: Default-First-Site-Name)
+3269/tcp open  tcpwrapped
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: Host: SV-DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.11.1.21
+Host is up (0.25s latency).
+Not shown: 853 closed tcp ports (conn-refused), 141 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE        VERSION
+21/tcp   open  ftp            FileZilla ftpd
+80/tcp   open  http           Microsoft IIS httpd 10.0
+135/tcp  open  msrpc          Microsoft Windows RPC
+139/tcp  open  netbios-ssn    Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds   Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+3389/tcp open  ms-wbt-server?
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.11.1.22
+Host is up (0.25s latency).
+Not shown: 852 closed tcp ports (conn-refused), 144 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds  Microsoft Windows 7 - 10 microsoft-ds (workgroup: svcorp)
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: Host: SVCLIENT08; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Nmap scan report for 10.11.1.24
+Host is up (0.25s latency).
+Not shown: 860 closed tcp ports (conn-refused), 136 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds  Microsoft Windows 7 - 10 microsoft-ds (workgroup: svcorp)
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+Service Info: Host: SVCLIENT73; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu May  5 22:41:34 2022 -- 4 IP addresses (4 hosts up) scanned in 186.56 seconds

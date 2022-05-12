@@ -1,0 +1,46 @@
+# Nmap 7.92 scan initiated Fri May  6 10:21:46 2022 as: nmap -T4 -A -oN detialed_ports_scan.txt 10.11.1.21
+Nmap scan report for 10.11.1.21
+Host is up (0.24s latency).
+Not shown: 994 closed tcp ports (conn-refused)
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           FileZilla ftpd
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+80/tcp   open  http          Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: SV Corporation Editorial Process
+|_http-server-header: Microsoft-IIS/10.0
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds  Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: svcorp
+|   NetBIOS_Domain_Name: svcorp
+|   NetBIOS_Computer_Name: SV-FILE01
+|   DNS_Domain_Name: svcorp.com
+|   DNS_Computer_Name: sv-file01.svcorp.com
+|   DNS_Tree_Name: svcorp.com
+|   Product_Version: 10.0.14393
+|_  System_Time: 2022-05-06T00:22:33+00:00
+| ssl-cert: Subject: commonName=sv-file01.svcorp.com
+| Not valid before: 2022-03-23T22:59:18
+|_Not valid after:  2022-09-22T22:59:18
+|_ssl-date: 2022-05-06T00:22:48+00:00; 0s from scanner time.
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb-security-mode: 
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2022-05-06T00:22:36
+|_  start_date: 2022-03-24T22:59:18
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri May  6 10:22:50 2022 -- 1 IP address (1 host up) scanned in 64.37 seconds
