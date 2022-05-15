@@ -40,9 +40,9 @@ ID 	Name 		Level 		Username 	Password
 # found port 22000
 22000/tcp open  ssh     OpenSSH 4.3 (protocol 2.0)
 
-# add ssh configuration to avoid unmatch key exchange issue
+# add ssh configuration to ~/.ssh/config to avoid unmatch key exchange issue
 Host 10.11.1.252
-    User git
+    User kali
     PubkeyAcceptedAlgorithms +ssh-rsa
     HostkeyAlgorithms +ssh-rsa
 
