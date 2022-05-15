@@ -1,0 +1,29 @@
+# Nmap 7.92 scan initiated Sat May 14 18:40:27 2022 as: nmap -T4 -sS -A -p8000,22000 -oN detialed_ports_scan.txt 10.11.1.252
+Nmap scan report for 10.11.1.252
+Host is up (0.33s latency).
+
+PORT      STATE SERVICE VERSION
+8000/tcp  open  http    Apache httpd 2.2.3 ((CentOS))
+|_http-server-header: Apache/2.2.3 (CentOS)
+|_http-open-proxy: Proxy might be redirecting requests
+| http-title: TimeClock Software :: Dev. Dpt. Thinc.local :: Log In
+|_Requested resource was login.php
+22000/tcp open  ssh     OpenSSH 4.3 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 ab:a7:86:a8:a0:39:c6:0a:81:0b:f9:ae:6f:4b:51:79 (DSA)
+|_  2048 8b:a5:11:b8:ca:75:9e:8c:a7:17:2c:a3:c9:90:1e:87 (RSA)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|firewall|WAP|proxy server|printer|PBX|media device
+Running (JUST GUESSING): Linux 2.6.X (92%), Cisco embedded (90%), ZoneAlarm embedded (90%), Riverbed embedded (89%), Ruckus embedded (88%), Kyocera embedded (87%), Sony embedded (86%)
+OS CPE: cpe:/o:linux:linux_kernel:2.6.9 cpe:/o:linux:linux_kernel:2.6 cpe:/h:cisco:sa520 cpe:/h:zonealarm:z100g cpe:/h:riverbed:steelhead_200 cpe:/h:ruckus:7363 cpe:/h:kyocera:cs-2560 cpe:/h:cisco:uc320w
+Aggressive OS guesses: Linux 2.6.9 (92%), Cisco SA520 firewall (Linux 2.6) (90%), Linux 2.6.9 - 2.6.27 (90%), ZoneAlarm Z100G WAP (90%), Linux 2.6.18 (89%), Linux 2.6.28 (89%), Linux 2.6.30 (89%), Linux 2.6.9 (CentOS 4.4) (89%), Riverbed Steelhead 200 proxy server (89%), Ruckus 7363 WAP (88%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+
+TRACEROUTE (using port 8000/tcp)
+HOP RTT       ADDRESS
+1   250.49 ms 192.168.119.1
+2   250.25 ms 10.11.1.252
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat May 14 18:40:59 2022 -- 1 IP address (1 host up) scanned in 32.19 seconds

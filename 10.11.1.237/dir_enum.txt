@@ -1,0 +1,5 @@
+[2K[32m                        [Status: 200, Size: 83, Words: 2, Lines: 6, Duration: 250ms][0m
+[2K[32mindex                   [Status: 200, Size: 83, Words: 2, Lines: 6, Duration: 308ms][0m
+[2K[32mindex.html              [Status: 200, Size: 83, Words: 2, Lines: 6, Duration: 308ms][0m
+[2K[34mmanual                  [Status: 301, Size: 311, Words: 20, Lines: 10, Duration: 258ms][0m
+[2K[33mwebdav                  [Status: 401, Size: 478, Words: 44, Lines: 15, Duration: 242ms][0m

