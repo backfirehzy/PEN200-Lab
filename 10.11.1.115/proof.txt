@@ -1,0 +1,294 @@
+#############################
+##### Ports Enumeration #####
+#############################
+
+----------------------------------------
+# Open Ports & Services & Versions
+----------------------------------------
+21/tcp    open  ftp         vsftpd 1.1.3
+22/tcp    open  ssh         OpenSSH 3.5p1 (protocol 1.99)
+25/tcp    open  smtp?
+80/tcp    open  http        Apache httpd 2.0.40 ((Red Hat Linux))
+111/tcp   open  rpcbind     2 (RPC #100000)
+139/tcp   open  netbios-ssn Samba smbd (workgroup: MYGROUP)
+143/tcp   open  imap        UW imapd 2001.315rh
+199/tcp   open  smux        Linux SNMP multiplexer
+443/tcp   open  ssl/http    Apache httpd 2.0.40 ((Red Hat Linux))
+3306/tcp  open  mysql       MySQL (unauthorized)
+32768/tcp open  status      1 (RPC #100024)
+
+
+
+----------------------------------------
+# Extra Information/Vectors
+----------------------------------------
+21/tcp	ftp-anon: Anonymous FTP login allowed (FTP code 230)
+
+
+
+
+############################
+##### Web Exploitation #####
+############################
+
+----------------------------------------
+# URL
+----------------------------------------
+http://10.11.1.115/
+https://10.11.1.115/
+
+
+----------------------------------------
+# Directories/Subdomains
+----------------------------------------
+http://10.11.1.115/manual/
+http://10.11.1.115/usage/
+http://10.11.1.115/webmail/
+
+
+----------------------------------------
+# Pages Content
+----------------------------------------
+/:
+	Possible user name: webmaster
+	Possible framework: Red Hat Linux 6.2
+
+
+----------------------------------------
+# Response Headers
+----------------------------------------
+HTTP/1.1 200 OK
+Date: Mon, 16 May 2022 11:45:08 GMT
+Server: Apache/2.0.40 (Red Hat Linux)
+Content-Location: core.html.en
+Vary: negotiate
+TCN: choice
+Last-Modified: Fri, 09 Aug 2002 17:48:11 GMT
+ETag: "61978-26cff-26c8cc0;31fedc00"
+Accept-Ranges: bytes
+Content-Length: 158975
+Connection: close
+Content-Type: text/html; charset=ISO-8859-1
+Content-Language: en
+
+
+----------------------------------------
+# Sitemaps
+----------------------------------------
+None
+
+
+----------------------------------------
+# Framework/Service & Version
+----------------------------------------
+/:
+	Red Hat Linux 6.2
+
+/usage:
+	Webalizer Version 2.01
+
+/webmail:
+	SquirrelMail version 1.2.10
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+Red Hat Linux 6.2:
+	Local Privilege Escalation...
+
+Webalizer Version 2.01:
+	None
+
+SquirrelMail version 1.2.10:
+	Squirrelmail 1.4.x - 'Redirect.php' Local File Inclusion | php/webapps/27948.txt [failed]
+	SquirrelMail < 1.4.22 - Remote Code Execution | linux/remote/41910.sh [require auth]
+
+
+----------------------------------------
+# Administration Consoles
+----------------------------------------
+http://10.11.1.115/webmail/src/login.php
+
+
+----------------------------------------
+# Admin Credential
+----------------------------------------
+wfuzz -u http://$IP/webmail/src/login.php -d "Action=login_username=webmail&secretkey=FUZZ&js_autodetect_results=1&just_logged_in=1" -w wordlist.txt  -c 
+
+
+----------------------------------------
+# Arbitrary Code Execution
+----------------------------------------
+
+
+
+----------------------------------------
+# Cross-Site Scripting (XSS)
+----------------------------------------
+
+
+
+----------------------------------------
+# Directory Traversal
+----------------------------------------
+
+
+
+----------------------------------------
+# File Inclusion
+----------------------------------------
+
+
+
+----------------------------------------
+# SQL Injection
+----------------------------------------
+
+
+
+
+
+########################################
+##### SMB Enumeration/Exploitation #####
+########################################
+
+----------------------------------------
+# Target
+----------------------------------------
+10.11.1.115
+
+
+----------------------------------------
+# Domain Information via RPC
+----------------------------------------
+
+
+----------------------------------------
+# OS Information via RPC 
+----------------------------------------
+OS: Linux/Unix (Samba 2.2.7a)                                                                                                                 
+OS version: '4.9'                                                                                                                             
+OS release: not supported                                                                                                                     
+OS build: not supported                                                                                                                       
+Native OS: Unix                                                                                                                               
+Native LAN manager: Samba 2.2.7a                                                                                                              
+Platform id: '500'                                                                                                                            
+Server type: '0x9a03'                                                                                                                         
+Server type string: Wk Sv PrQ Unx NT SNT Samba Server
+
+
+----------------------------------------
+# Users via RPC 
+----------------------------------------
+
+
+
+----------------------------------------
+# Groups via RPC 
+----------------------------------------
+
+
+
+----------------------------------------
+# Shares via RPC 
+----------------------------------------
+
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+Samba 2.2.0 < 2.2.8 (OSX) - trans2open Overflow (Metasploit)  | osx/remote/9924.rb
+Samba < 2.2.8 (Linux/BSD) - Remote Code Execution             | multiple/remote/10.c [works]
+Samba < 3.0.20 - Remote Heap Overflow                         | linux/remote/7701.txt
+Samba < 3.6.2 (x86) - Denial of Service (PoC)                 | linux_x86/dos/36741.py
+
+
+
+################################
+##### Privilege Escalation #####
+################################
+
+----------------------------------------
+# Hostname
+----------------------------------------
+
+
+
+----------------------------------------
+# OS Version & Architecture
+----------------------------------------
+
+
+
+----------------------------------------
+# Users
+----------------------------------------
+
+
+
+----------------------------------------
+# Processes & Services
+----------------------------------------
+
+
+
+----------------------------------------
+# Network Information (IP, Route)
+----------------------------------------
+
+
+
+----------------------------------------
+# Firewall Status & Rules
+----------------------------------------
+
+
+
+----------------------------------------
+# Scheduled Tasks
+----------------------------------------
+
+
+
+----------------------------------------
+# Readable/Writable Files & Directories
+----------------------------------------
+
+
+
+----------------------------------------
+# Installed Applications & Patch Levels
+----------------------------------------
+
+
+
+----------------------------------------
+# Unmounted Disks
+----------------------------------------
+
+
+
+----------------------------------------
+# Device Drivers and Kernel Modules
+----------------------------------------
+
+
+
+----------------------------------------
+# AutoElevated Binaries
+----------------------------------------
+
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+
+
+
+
+
+
+
