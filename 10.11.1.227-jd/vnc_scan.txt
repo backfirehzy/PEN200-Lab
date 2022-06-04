@@ -1,0 +1,38 @@
+# Nmap 7.92 scan initiated Fri Jun  3 22:15:53 2022 as: nmap -sV --script=realvnc-auth-bypass -oN vnc_scan.txt 10.11.1.227
+Nmap scan report for 10.11.1.227
+Host is up (0.24s latency).
+Not shown: 987 closed tcp ports (conn-refused)
+PORT     STATE SERVICE      VERSION
+21/tcp   open  ftp          Microsoft ftpd 5.0
+25/tcp   open  smtp         Microsoft ESMTP 5.0.2195.5329
+80/tcp   open  http         Microsoft IIS httpd 5.0
+|_http-server-header: Microsoft-IIS/5.0
+135/tcp  open  msrpc        Microsoft Windows RPC
+139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn
+443/tcp  open  https?
+445/tcp  open  microsoft-ds Microsoft Windows 2000 microsoft-ds
+1025/tcp open  msrpc        Microsoft Windows RPC
+1026/tcp open  msrpc        Microsoft Windows RPC
+1028/tcp open  msrpc        Microsoft Windows RPC
+3372/tcp open  msdtc        Microsoft Distributed Transaction Coordinator
+5800/tcp open  vnc-http     RealVNC 4.0 (resolution: 400x250; VNC TCP port: 5900)
+|_http-server-header: RealVNC/4.0
+5900/tcp open  vnc          VNC (protocol 3.8)
+| realvnc-auth-bypass: 
+|   VULNERABLE:
+|   RealVNC 4.1.0 - 4.1.1 Authentication Bypass
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2006-2369
+|     Risk factor: High  CVSSv2: 7.5 (HIGH) (AV:N/AC:L/Au:N/C:P/I:P/A:P)
+|       RealVNC 4.1.1, and other products that use RealVNC such as AdderLink IP and
+|       Cisco CallManager, allows remote attackers to bypass authentication via a
+|       request in which the client specifies an insecure security type such as
+|       "Type 1 - None", which is accepted even if it is not offered by the server.
+|     Disclosure date: 2006-05-08
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-2369
+|_      http://www.intelliadmin.com/index.php/2006/05/security-flaw-in-realvnc-411/
+Service Info: Host: jd.acme.local; OSs: Windows, Windows 2000; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_2000
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jun  3 22:17:38 2022 -- 1 IP address (1 host up) scanned in 104.92 seconds

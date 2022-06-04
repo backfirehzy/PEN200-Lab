@@ -1,0 +1,3 @@
+alice:$1$BfWG661G$ye24xqRQEx.nq.bZTATwf.:501:501::/home/alice:/bin/bash
+bob:$1$Rrhb4lzg$Ee8/JYZjv.NimwyrSEL6R/:500:500::/home/bob:/bin/bash
+root:$1$236Vlq03$B7t0m/g9MRJmiR/ufF4jo0:0:0:root:/root:/bin/bash

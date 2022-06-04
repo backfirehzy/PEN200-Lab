@@ -1,0 +1,22 @@
+# Nmap 7.92 scan initiated Fri Jun  3 17:59:09 2022 as: nmap -T4 -sV -oN ports_scan.txt 10.11.1.227
+Nmap scan report for 10.11.1.227
+Host is up (0.24s latency).
+Not shown: 987 closed tcp ports (conn-refused)
+PORT     STATE SERVICE      VERSION
+21/tcp   open  ftp          Microsoft ftpd 5.0
+25/tcp   open  smtp         Microsoft ESMTP 5.0.2195.5329
+80/tcp   open  http         Microsoft IIS httpd 5.0
+135/tcp  open  msrpc        Microsoft Windows RPC
+139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn
+443/tcp  open  https?
+445/tcp  open  microsoft-ds Microsoft Windows 2000 microsoft-ds
+1025/tcp open  msrpc        Microsoft Windows RPC
+1026/tcp open  msrpc        Microsoft Windows RPC
+1028/tcp open  msrpc        Microsoft Windows RPC
+3372/tcp open  msdtc        Microsoft Distributed Transaction Coordinator
+5800/tcp open  vnc-http     RealVNC 4.0 (resolution: 400x250; VNC TCP port: 5900)
+5900/tcp open  vnc          VNC (protocol 3.8)
+Service Info: Host: jd.acme.local; OSs: Windows, Windows 2000; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_2000
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jun  3 18:00:48 2022 -- 1 IP address (1 host up) scanned in 99.03 seconds

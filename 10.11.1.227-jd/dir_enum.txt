@@ -1,0 +1,7 @@
+[2K[34m_vti_bin                [Status: 302, Size: 151, Words: 9, Lines: 2, Duration: 307ms][0m
+[2K[32m_vti_bin/_vti_adm/admin.dll [Status: 200, Size: 38, Words: 3, Lines: 1, Duration: 315ms][0m
+[2K[32m_vti_bin/_vti_aut/author.dll [Status: 200, Size: 38, Words: 3, Lines: 1, Duration: 315ms][0m
+[2K[32m_vti_bin/shtml.dll      [Status: 200, Size: 193, Words: 19, Lines: 9, Duration: 315ms][0m
+[2K[31mglobal.asa              [Status: 500, Size: 4231, Words: 475, Lines: 137, Duration: 523ms][0m
+[2K[32mindex.html              [Status: 200, Size: 12, Words: 2, Lines: 1, Duration: 247ms][0m
+[2K[33mprinters                [Status: 401, Size: 4431, Words: 495, Lines: 139, Duration: 256ms][0m

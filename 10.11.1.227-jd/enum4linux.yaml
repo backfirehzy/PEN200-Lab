@@ -1,0 +1,128 @@
+target:
+  host: 10.11.1.227
+  workgroup: ''
+credentials:
+  user: ''
+  password: ''
+  random_user: qmspfrcj
+services:
+  LDAP:
+    port: 389
+    accessible: false
+  LDAPS:
+    port: 636
+    accessible: false
+  SMB:
+    port: 445
+    accessible: true
+  SMB over NetBIOS:
+    port: 139
+    accessible: true
+workgroup: WORKGROUP
+nmblookup:
+- JD              <00> -         M <ACTIVE>  Workstation Service
+- JD              <03> -         M <ACTIVE>  Messenger Service
+- WORKGROUP       <00> - <GROUP> M <ACTIVE>  Domain/Workgroup Name
+- ADMINISTRATOR   <03> -         M <ACTIVE>  Messenger Service
+- JD              <20> -         M <ACTIVE>  File Server Service
+- WORKGROUP       <1e> - <GROUP> M <ACTIVE>  Browser Service Elections
+- MAC Address = 00-50-56-86-CA-ED
+smb_dialects: true
+sessions_possible: true
+null_session_possible: true
+user_session_possible: false
+random_user_session_possible: true
+domain_sid: NULL SID
+member_of: workgroup
+domain_info:
+  NetBIOS computer name: JD
+  NetBIOS domain name: ''
+  DNS domain: jd.acme.local
+  FQDN: jd.acme.local
+os_info:
+  OS: Windows 2000
+  OS version: '5.0'
+  OS release: not supported
+  OS build: not supported
+  Native OS: Windows 5.0
+  Native LAN manager: Windows 2000 LAN Manager
+  Platform id: '500'
+  Server type: '0x29007'
+  Server type string: Wk Sv Sql NT SNT BMB
+users: null
+groups:
+  '544':
+    groupname: Administrators
+    type: builtin
+  '551':
+    groupname: Backup Operators
+    type: builtin
+  '546':
+    groupname: Guests
+    type: builtin
+  '547':
+    groupname: Power Users
+    type: builtin
+  '552':
+    groupname: Replicator
+    type: builtin
+  '545':
+    groupname: Users
+    type: builtin
+  '513':
+    groupname: None
+    type: domain
+shares:
+  IPC$:
+    type: IPC
+    comment: Remote IPC
+    access:
+      mapping: ok
+      listing: denied
+  share:
+    type: Disk
+    comment: ''
+    access:
+      mapping: denied
+      listing: n/a
+  ADMIN$:
+    type: Disk
+    comment: Remote Admin
+    access:
+      mapping: denied
+      listing: n/a
+  C$:
+    type: Disk
+    comment: Default share
+    access:
+      mapping: denied
+      listing: n/a
+policy:
+  domain_password_information:
+    pw_history_length: None
+    min_pw_length: None
+    min_pw_age: none
+    max_pw_age: 42 days 22 hours 47 minutes
+    pw_properties:
+    - DOMAIN_PASSWORD_COMPLEX: false
+    - DOMAIN_PASSWORD_NO_ANON_CHANGE: false
+    - DOMAIN_PASSWORD_NO_CLEAR_CHANGE: false
+    - DOMAIN_PASSWORD_LOCKOUT_ADMINS: false
+    - DOMAIN_PASSWORD_PASSWORD_STORE_CLEARTEXT: false
+    - DOMAIN_PASSWORD_REFUSE_PASSWORD_CHANGE: false
+  domain_lockout_information:
+    lockout_observation_window: 30 minutes
+    lockout_duration: 30 minutes
+    lockout_threshold: None
+  domain_logoff_information:
+    force_logoff_time: not set
+printers: {}
+errors:
+  services:
+    enum_services:
+    - 'Could not connect to LDAP on 389/tcp: connection refused'
+    - 'Could not connect to LDAPS on 636/tcp: connection refused'
+  users:
+    enum_users_rpc:
+    - 'Could not find users via ''querydispinfo'': timed out'
+    - 'Could not find users via ''enumdomusers'': timed out'

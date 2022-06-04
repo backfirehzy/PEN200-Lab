@@ -1,0 +1,478 @@
+#############################
+##### Ports Enumeration #####
+#############################
+
+----------------------------------------
+# Open Ports & Services & Versions
+----------------------------------------
+21/tcp   open  ftp          Microsoft ftpd 5.0
+25/tcp   open  smtp         Microsoft ESMTP 5.0.2195.5329
+80/tcp   open  http         Microsoft IIS httpd 5.0
+135/tcp  open  msrpc        Microsoft Windows RPC
+139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn
+443/tcp  open  https?
+445/tcp  open  microsoft-ds Microsoft Windows 2000 microsoft-ds
+1025/tcp open  msrpc        Microsoft Windows RPC
+1026/tcp open  msrpc        Microsoft Windows RPC
+1028/tcp open  msrpc        Microsoft Windows RPC
+3372/tcp open  msdtc        Microsoft Distributed Transaction Coordinator
+5800/tcp open  vnc-http     RealVNC 4.0 (resolution: 400x250; VNC TCP port: 5900)
+5900/tcp open  vnc          VNC (protocol 3.8)
+
+
+----------------------------------------
+# Extra Information
+----------------------------------------
+21/tcp   open  ftp          Microsoft ftpd 5.0
+	Anonymous FTP login allowed
+
+# nmap -sV --script=realvnc-auth-bypass -p5900 $IP
+RealVNC 4.1.0 - 4.1.1 Authentication Bypass
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2006-2369
+|     Risk factor: High  CVSSv2: 7.5 (HIGH) (AV:N/AC:L/Au:N/C:P/I:P/A:P)
+|       RealVNC 4.1.1, and other products that use RealVNC such as AdderLink IP and
+|       Cisco CallManager, allows remote attackers to bypass authentication via a
+|       request in which the client specifies an insecure security type such as
+|       "Type 1 - None", which is accepted even if it is not offered by the server.
+
+
+pwd: 7A6417Yrjh
+
+########################################
+##### SMB Enumeration/Exploitation #####
+########################################
+
+----------------------------------------
+# Target
+----------------------------------------
+10.11.1.227
+
+
+----------------------------------------
+# Domain Information via RPC
+----------------------------------------
+NetBIOS computer name: JD                                                                                                                     
+NetBIOS domain name: ''                                                                                                                       
+DNS domain: jd.acme.local                                                                                                                     
+FQDN: jd.acme.local  
+
+
+----------------------------------------
+# OS Information via RPC 
+----------------------------------------
+OS: Windows 2000                                                                                                                              
+OS version: '5.0'                                                                                                                             
+OS release: not supported                                                                                                                     
+OS build: not supported                                                                                                                       
+Native OS: Windows 5.0                                                                                                                        
+Native LAN manager: Windows 2000 LAN Manager                                                                                                  
+Platform id: '500'                                                                                                                            
+Server type: '0x29007'                                                                                                                        
+Server type string: Wk Sv Sql NT SNT BMB 
+
+
+----------------------------------------
+# Users via RPC 
+----------------------------------------
+'1000':                                                                                                                                       
+  username: TsInternetUser                                                                                                                    
+  name: TsInternetUser                                                                                                                        
+  acb: '0x00000214'                                                                                                                           
+  description: This user account is used by Terminal Services.                                                                                
+'1005':                                                                                                                                       
+  username: sqlusr                                                                                                                            
+  name: sqlusr                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1006':                                                                                                                                       
+  username: backup                                                                                                                            
+  name: backup                                                                                                                                
+  acb: '0x00000210'                                                                                                                           
+  description: (null)                                                                                                                         
+'1007':                                                                                                                                       
+  username: admin                                                                                                                             
+  name: (null)                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1008':                                                                                                                                       
+  username: simon                                                                                                                             
+  name: (null)                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1009':                                                                                                                                       
+  username: david                                                                                                                             
+  name: (null)                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1010':                                                                                                                                       
+  username: john                                                                                                                              
+  name: (null)                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1011':                                                                                                                                       
+  username: lisa                                                                                                                              
+  name: (null)                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1012':                                                                                                                                       
+  username: mark                                                                                                                              
+  name: (null)                                                                                                                                
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1013':                                                                                                                                       
+  username: gary                                                                                                                              
+  name: gary                                                                                                                                  
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1014':                                                                                                                                       
+  username: nick                                                                                                                              
+  name: nick                                                                                                                                  
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1015':                                                                                                                                       
+  username: lee                                                                                                                               
+  name: lee                                                                                                                                   
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1016':                                                                                                                                       
+  username: ned                                                                                                                               
+  name: ned                                                                                                                                   
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1017':                                                                                                                                       
+  username: homer                                                                                                                             
+  name: homer                                                                                                                                 
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1018':                                                                                                                                       
+  username: todd                                                                                                                              
+  name: todd                                                                                                                                  
+  acb: '0x00000010'                                                                                                                           
+  description: (null)                                                                                                                         
+'1019':                                                                                                                                       
+  username: IWAM_SRV2                                                                                                                         
+  name: Internet Guest Account                                                                                                                
+  acb: '0x00000214'                                                                                                                           
+  description: Built-in account for anonymous access to Internet Information Services out of process applications                             
+'1020':                                                                                                                                       
+  username: IUSR_SRV2                                                                                                                         
+  name: Internet Guest Account                                                                                                                
+  acb: '0x00000214'                                                                                                                           
+  description: Built-in account for anonymous access to Internet Information Services                                                         
+'500':                                                                                                                                        
+  username: Administrator                                                                                                                     
+  name: (null)                                                                                                                                
+  acb: '0x00000210'                                                                                                                           
+  description: Built-in account for administering the computer/domain                                                                         
+'501':                                                                                                                                        
+  username: Guest                                                                                                                             
+  name: (null)                                                                                                                                
+  acb: '0x00000214'                                                                                                                           
+  description: Built-in account for guest access to the computer/domain  
+
+
+----------------------------------------
+# Groups via RPC 
+----------------------------------------
+'513':                                                                                                                                        
+  groupname: None                                                                                                                             
+  type: domain                                                                                                                                
+'544':                                                                                                                                        
+  groupname: Administrators                                                                                                                   
+  type: builtin                                                                                                                               
+'545':                                                                                                                                        
+  groupname: Users                                                                                                                            
+  type: builtin                                                                                                                               
+'546':                                                                                                                                        
+  groupname: Guests                                                                                                                           
+  type: builtin                                                                                                                               
+'547':                                                                                                                                        
+  groupname: Power Users                                                                                                                      
+  type: builtin                                                                                                                               
+'551':                                                                                                                                        
+  groupname: Backup Operators                                                                                                                 
+  type: builtin                                                                                                                               
+'552':                                                                                                                                        
+  groupname: Replicator                                                                                                                       
+  type: builtin                
+
+
+----------------------------------------
+# Shares via RPC 
+----------------------------------------
+IPC$        NO ACCESS       Remote IPC
+share       NO ACCESS
+ADMIN$      NO ACCESS       Remote Admin
+C$          NO ACCESS       Default share
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+
+
+
+
+
+########################################
+##### Web Enumeration/Exploitation #####
+########################################
+
+----------------------------------------
+# URL
+----------------------------------------
+http://10.11.1.227/
+
+
+
+----------------------------------------
+# Directories/Subdomains
+----------------------------------------
+
+_vti_bin                [Status: 302, Size: 151, Words: 9, Lines: 2, Duration: 306ms]
+_vti_bin/_vti_aut/author.dll [Status: 200, Size: 38, Words: 3, Lines: 1, Duration: 455ms]
+_vti_bin/_vti_adm/admin.dll [Status: 200, Size: 38, Words: 3, Lines: 1, Duration: 460ms]
+_vti_bin/shtml.dll      [Status: 200, Size: 193, Words: 19, Lines: 9, Duration: 455ms]
+global.asa              [Status: 500, Size: 4231, Words: 475, Lines: 137, Duration: 558ms]
+index.html              [Status: 200, Size: 12, Words: 2, Lines: 1, Duration: 306ms]
+printers                [Status: 401, Size: 4431, Words: 495, Lines: 139, Duration: 286ms]
+
+http://10.11.1.227/_private             (Status: 403) [Size: 4214]
+http://10.11.1.227/_vti_bin             (Status: 302) [Size: 151] [--> http://10.11.1.227/_vti_bin/]
+http://10.11.1.227/_vti_bin/_vti_adm/admin.dll (Status: 200) [Size: 38]                             
+http://10.11.1.227/_vti_bin/shtml.dll   (Status: 200) [Size: 193]                                   
+http://10.11.1.227/_vti_cnf             (Status: 403) [Size: 4214]                                  
+http://10.11.1.227/_vti_log             (Status: 403) [Size: 4214]                                  
+http://10.11.1.227/_vti_bin/_vti_aut/author.dll (Status: 200) [Size: 38]                            
+http://10.11.1.227/_vti_pvt             (Status: 403) [Size: 4214]                                  
+http://10.11.1.227/_vti_txt             (Status: 403) [Size: 4214]
+
+
+----------------------------------------
+# Pages Content
+----------------------------------------
+
+
+
+----------------------------------------
+# Response Headers
+----------------------------------------
+
+
+
+----------------------------------------
+# Sitemaps
+----------------------------------------
+
+
+
+----------------------------------------
+# Framework/Service & Version
+----------------------------------------
+
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+Microsoft IIS 2.0/3.0/4.0/5.0/5.1 - Internal IP Address Disclosure                         | windows/remote/20096.txt
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (1)          | windows/remote/20835.c
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (2)          | windows/remote/20836.c
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (3)          | windows/remote/20837.pl
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (4)          | windows/remote/20838.c
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (5)          | windows/remote/20839.sh
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (6)          | windows/remote/20840.txt
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (7)          | windows/remote/20841.txt
+Microsoft IIS 3.0/4.0/5.0 - PWS Escaped Characters Decoding Command Execution (8)          | windows/remote/20842.txt
+Microsoft IIS 4.0/5.0 - Chunked Encoding Transfer Heap Overflow (1)                        | windows/remote/21368.c
+Microsoft IIS 4.0/5.0 - Chunked Encoding Transfer Heap Overflow (2)                        | windows/remote/21369.c
+Microsoft IIS 4.0/5.0 - Chunked Encoding Transfer Heap Overflow (3)                        | windows/remote/21370.c
+Microsoft IIS 4.0/5.0 - Chunked Encoding Transfer Heap Overflow (4)                        | windows/remote/21371.c
+Microsoft IIS 4.0/5.0 - Device File Local Denial of Service                                | windows/dos/20989.txt
+Microsoft IIS 4.0/5.0 - Device File Remote Denial of Service                               | windows/dos/20991.txt
+Microsoft IIS 4.0/5.0 - Executable File Parsing                                            | windows/remote/20384.txt
+Microsoft IIS 4.0/5.0 - FTP Denial of Service (MS01-026)                                   | windows/dos/20846.pl
+Microsoft IIS 4.0/5.0 - HTTP Error Page Cross-Site Scripting                               | windows/remote/21372.txt
+Microsoft IIS 4.0/5.0 - Malformed File Extension Denial of Service                         | windows/dos/19907.txt
+Microsoft IIS 4.0/5.0 - Malformed Filename Request                                         | windows/remote/19908.txt
+Microsoft IIS 4.0/5.0 - SMTP Service Encapsulated SMTP Address (MS99-027)                  | windows/remote/21613.txt
+Microsoft IIS 4.0/5.0 - Source Fragment Disclosure                                         | windows/remote/20089.txt
+Microsoft IIS 4.0/5.0 - SSI Buffer Overrun Privilege Escalation                            | windows/local/21071.c
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (1)                   | windows/remote/20298.c
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (2)                   | windows/remote/20299.pl
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (3)                   | windows/remote/20300.c
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (4)                   | windows/remote/20301.php
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (5)                   | windows/remote/20302.pl
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (6)                   | windows/remote/189.c
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (7)                   | windows/remote/191.pl
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (8)                   | windows/remote/192.pl
+Microsoft IIS 4.0/5.0 and PWS - Extended Unicode Directory Traversal (9)                   | windows/remote/190.c
+Microsoft IIS 4.0/5.0/5.1 - Authentication Method Disclosure                               | windows/remote/21313.txt
+Microsoft IIS 4.0/5.0/6.0 - Internal IP Address/Internal Network Name Disclosure           | windows/remote/21057.txt
+Microsoft IIS 5.0 (Windows XP/2000/NT 4.0) - WebDAV 'ntdll.dll' Remote Buffer Overflow (1) | windows/remote/s.pl
+Microsoft IIS 5.0 (Windows XP/2000/NT 4.0) - WebDAV 'ntdll.dll' Remote Buffer Overflow (2) | windows/remote/22366.c
+Microsoft IIS 5.0 (Windows XP/2000/NT 4.0) - WebDAV 'ntdll.dll' Remote Buffer Overflow (3) | windows/remote/22367.txt
+Microsoft IIS 5.0 (Windows XP/2000/NT 4.0) - WebDAV 'ntdll.dll' Remote Buffer Overflow (4) | windows/remote/22368.txt
+Microsoft IIS 5.0 - '.printer' ISAPI Extension Buffer Overflow (1)                         | windows/remote/20815.pl
+Microsoft IIS 5.0 - '.printer' ISAPI Extension Buffer Overflow (2)                         | windows/remote/20816.c
+Microsoft IIS 5.0 - '.printer' ISAPI Extension Buffer Overflow (3)                         | windows/remote/20817.c
+Microsoft IIS 5.0 - '.printer' ISAPI Extension Buffer Overflow (4)                         | windows/remote/20818.txt
+Microsoft IIS 5.0 - '500-100.asp' Server Name Spoof                                        | windows/remote/1178.c
+Microsoft IIS 5.0 - 'CodeBrws.asp' Source Code Disclosure                                  | windows/remote/21385.txt
+Microsoft IIS 5.0 - 'Translate: f' Source Disclosure (1)                                   | windows/remote/20151.pl
+Microsoft IIS 5.0 - 'Translate: f' Source Disclosure (2)                                   | windows/remote/20152.pl
+Microsoft IIS 5.0 - Authentication Bypass (MS10-065)                                       | windows/remote/14179.txt
+Microsoft IIS 5.0 - Failure To Log Undocumented TRACK Requests                             | windows/remote/23490.txt
+Microsoft IIS 5.0 - False Content-Length Field Denial of Service                           | windows/dos/21177.txt
+Microsoft IIS 5.0 - IDC Extension Cross-Site Scripting                                     | windows/remote/21910.txt
+Microsoft IIS 5.0 - IDQ Path Overflow (MS01-033) (Metasploit)                              | windows/remote/16472.rb
+Microsoft IIS 5.0 - IISAPI Extension Enumerate Root Web Server Directory                   | windows/remote/19152.txt
+Microsoft IIS 5.0 - In-Process Table Privilege Escalation                                  | windows/local/21072.txt
+Microsoft IIS 5.0 - Indexed Directory Disclosure                                           | windows/remote/20269.txt
+Microsoft IIS 5.0 - Printer Host Header Overflow (MS01-023) (Metasploit)                   | windows/remote/16469.rb
+Microsoft IIS 5.0 - SSL Remote Buffer Overflow (MS04-011)                                  | windows/remote/275.c
+Microsoft IIS 5.0 - User Existence Disclosure (1)                                          | windows/remote/22562.pl
+Microsoft IIS 5.0 - User Existence Disclosure (2)                                          | windows/remote/22563.pl
+Microsoft IIS 5.0 - WebDAV 'ntdll.dll' Path Overflow (MS03-007) (Metasploit)               | windows/remote/16470.rb
+Microsoft IIS 5.0 - WebDAV Denial of Service                                               | windows/dos/20664.pl
+Microsoft IIS 5.0 - WebDAV Lock Method Memory Leak Denial of Service                       | windows/dos/20854.txt
+Microsoft IIS 5.0 - WebDAV PROPFIND / SEARCH Method Denial of Service                      | windows/dos/22670.c
+Microsoft IIS 5.0 - WebDAV Remote                                                          | windows/remote/2.c
+Microsoft IIS 5.0 - WebDAV Remote Code Execution (3) (xwdav)                               | windows/remote/51.c
+Microsoft IIS 5.0 < 5.1 - Remote Denial of Service                                         | windows/dos/35.c
+Microsoft IIS 5.0 FTP Server (Windows 2000 SP4) - Remote Stack Overflow                    | windows/remote/9559.pl
+Microsoft IIS 5.0/6.0 FTP Server (Windows 2000) - Remote Stack Overflow                    | windows/remote/9541.pl
+Microsoft IIS 5.0/6.0 FTP Server - Stack Exhaustion Denial of Service                      | windows/dos/9587.txt
+
+
+
+----------------------------------------
+# Administration Consoles
+----------------------------------------
+http://10.11.1.227/printers
+
+
+----------------------------------------
+# Admin Credential
+----------------------------------------
+
+
+
+----------------------------------------
+# Arbitrary Code Execution
+----------------------------------------
+
+
+
+----------------------------------------
+# Cross-Site Scripting (XSS)
+----------------------------------------
+
+
+
+----------------------------------------
+# Directory Traversal
+----------------------------------------
+
+
+
+----------------------------------------
+# File Inclusion
+----------------------------------------
+
+
+
+----------------------------------------
+# SQL Injection
+----------------------------------------
+
+
+
+
+
+################################
+##### Privilege Escalation #####
+################################
+
+----------------------------------------
+# Hostname
+----------------------------------------
+
+
+
+----------------------------------------
+# OS Version & Architecture
+----------------------------------------
+
+
+
+----------------------------------------
+# Users
+----------------------------------------
+
+
+
+----------------------------------------
+# Processes & Services
+----------------------------------------
+
+
+
+----------------------------------------
+# Network Information (IP, Route)
+----------------------------------------
+
+
+
+----------------------------------------
+# Firewall Status & Rules
+----------------------------------------
+
+
+
+----------------------------------------
+# Scheduled Tasks
+----------------------------------------
+
+
+
+----------------------------------------
+# Readable/Writable Files & Directories
+----------------------------------------
+
+
+
+----------------------------------------
+# Installed Applications & Patch Levels
+----------------------------------------
+
+
+
+----------------------------------------
+# Unmounted Disks
+----------------------------------------
+
+
+
+----------------------------------------
+# Device Drivers and Kernel Modules
+----------------------------------------
+
+
+
+----------------------------------------
+# AutoElevated Binaries
+----------------------------------------
+
+
+
+----------------------------------------
+# Public Exploits/References
+----------------------------------------
+
+
+
+
+
+
