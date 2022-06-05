@@ -65,6 +65,8 @@ var _0x5490 = ["length", " ", "offsecphun1.gif", "offsecphun2.png", "getSeconds"
 
 # by deobfuscating the js code we can that there is a line of code has been commented out, which reveral a directory name
 # using different tools are likely to find out something new
+# https://deobfuscate.io/
+# https://lelinhtinh.github.io/de4js/
 /1f2e73705207bdd6467e109c1606ed29-21213
 
 # go enumerate the directroies again then get a login page and version page
