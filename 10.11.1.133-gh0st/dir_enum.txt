@@ -1,0 +1,19 @@
+http://10.11.1.133/_vti_cnf           
+http://10.11.1.133/_vti_bin           
+http://10.11.1.133/_vti_pvt           
+http://10.11.1.133/_vti_txt           
+http://10.11.1.133/bak               
+http://10.11.1.133/check.php (phpinfo)  
+http://10.11.1.133/error.html         
+http://10.11.1.133/error              
+http://10.11.1.133/iissamples 
+	http://10.11.1.133/iissamples/exair/howitworks/Code.asp
+	http://10.11.1.133/iissamples/issamples/codebrws.asp        
+http://10.11.1.133/index              
+http://10.11.1.133/index.asp          
+http://10.11.1.133/login.asp          
+http://10.11.1.133/login              
+http://10.11.1.133/Sites
+	http://10.11.1.133/Sites/Knowledge/Membership/Inspired/ViewCode.asp           
+http://10.11.1.133/test               
+http://10.11.1.133/test.asp
