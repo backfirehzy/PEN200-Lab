@@ -1,0 +1,108 @@
+# Nmap 7.92 scan initiated Wed Jun  8 13:12:26 2022 as: nmap -T4 -A -v -p21,135,139,445,1433,3389,4167,5800,5900,5985,47001,49152,49153,49154,49155,49156,49157,49158 -oN ./port_scan_files/version_scan.txt 10.11.1.128
+Nmap scan report for 10.11.1.128
+Host is up (0.26s latency).
+
+PORT      STATE SERVICE            VERSION
+21/tcp    open  ftp                Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_03-14-19  01:58AM             54030608 FoxitReader901_enu_Setup_Prom.exe
+| ftp-syst: 
+|_  SYST: Windows_NT
+135/tcp   open  msrpc              Microsoft Windows RPC
+139/tcp   open  netbios-ssn        Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds       Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+1433/tcp  open  ms-sql-s           Microsoft SQL Server 2012 11.00.2100.00; RTM
+|_ssl-date: 2022-06-08T03:14:24+00:00; -2s from scanner time.
+| ms-sql-ntlm-info: 
+|   Target_Name: DJ
+|   NetBIOS_Domain_Name: DJ
+|   NetBIOS_Computer_Name: DJ
+|   DNS_Domain_Name: dj
+|   DNS_Computer_Name: dj
+|_  Product_Version: 6.3.9600
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Issuer: commonName=SSL_Self_Signed_Fallback
+| Public Key type: rsa
+| Public Key bits: 1024
+| Signature Algorithm: sha1WithRSAEncryption
+| Not valid before: 2022-04-06T17:00:38
+| Not valid after:  2052-04-06T17:00:38
+| MD5:   e792 2811 88ee 4383 7d47 0471 4514 dced
+|_SHA-1: 4d79 9eaf c42c 923d 52fc e42e 09ff de5f c32d d0f3
+3389/tcp  open  ssl/ms-wbt-server?
+| ssl-cert: Subject: commonName=dj
+| Issuer: commonName=dj
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2022-03-15T23:28:53
+| Not valid after:  2022-09-14T23:28:53
+| MD5:   8fd2 5f3e f683 a9c4 201d 012f 61dc f794
+|_SHA-1: 2c07 2fa6 e595 fc97 7c7c 0f89 28e8 54b3 8855 b125
+|_ssl-date: 2022-06-08T03:14:24+00:00; -2s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: DJ
+|   NetBIOS_Domain_Name: DJ
+|   NetBIOS_Computer_Name: DJ
+|   DNS_Domain_Name: dj
+|   DNS_Computer_Name: dj
+|   Product_Version: 6.3.9600
+|_  System_Time: 2022-06-08T03:14:08+00:00
+4167/tcp  open  http               Microsoft IIS httpd 8.5
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+|_http-title: IIS Windows Server
+|_http-server-header: Microsoft-IIS/8.5
+5800/tcp  open  vnc-http           TightVNC (user: dj; VNC TCP port: 5900)
+| http-methods: 
+|_  Supported Methods: GET
+|_http-title: TightVNC desktop [dj]
+5900/tcp  open  vnc                VNC (protocol 3.8)
+| vnc-info: 
+|   Protocol version: 3.8
+|   Security types: 
+|     VNC Authentication (2)
+|     Tight (16)
+|   Tight auth subtypes: 
+|_    STDV VNCAUTH_ (2)
+5985/tcp  open  http               Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+47001/tcp open  http               Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+49152/tcp open  msrpc              Microsoft Windows RPC
+49153/tcp open  msrpc              Microsoft Windows RPC
+49154/tcp open  msrpc              Microsoft Windows RPC
+49155/tcp open  msrpc              Microsoft Windows RPC
+49156/tcp open  msrpc              Microsoft Windows RPC
+49157/tcp open  msrpc              Microsoft Windows RPC
+49158/tcp open  msrpc              Microsoft Windows RPC
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2022-06-08T03:14:12
+|_  start_date: 2022-04-06T17:00:37
+|_clock-skew: mean: -2s, deviation: 0s, median: -2s
+| smb2-security-mode: 
+|   3.0.2: 
+|_    Message signing enabled but not required
+| ms-sql-info: 
+|   10.11.1.128:1433: 
+|     Version: 
+|       name: Microsoft SQL Server 2012 RTM
+|       number: 11.00.2100.00
+|       Product: Microsoft SQL Server 2012
+|       Service pack level: RTM
+|       Post-SP patches applied: false
+|_    TCP port: 1433
+| smb-security-mode: 
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jun  8 13:14:32 2022 -- 1 IP address (1 host up) scanned in 125.96 seconds

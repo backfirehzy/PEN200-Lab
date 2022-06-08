@@ -1,0 +1,77 @@
+target:
+  host: 10.11.1.128
+  workgroup: ''
+credentials:
+  user: ''
+  password: ''
+  random_user: ngcccwvg
+services:
+  LDAP:
+    port: 389
+    accessible: false
+  LDAPS:
+    port: 636
+    accessible: false
+  SMB:
+    port: 445
+    accessible: true
+  SMB over NetBIOS:
+    port: 139
+    accessible: true
+workgroup: null
+nmblookup: null
+smb_dialects:
+  SMB 1.0: true
+  SMB 2.02: true
+  SMB 2.1: true
+  SMB 3.0: true
+  SMB1 only: false
+  Preferred dialect: SMB 3.0
+  SMB signing required: false
+sessions_possible: false
+null_session_possible: false
+user_session_possible: false
+random_user_session_possible: false
+domain_info:
+  NetBIOS computer name: DJ
+  NetBIOS domain name: ''
+  DNS domain: dj
+  FQDN: dj
+os_info:
+  OS: Windows Server 2012 R2 Standard 9600
+  OS version: '6.3'
+  OS release: ''
+  OS build: '9600'
+  Native OS: Windows Server 2012 R2 Standard 9600
+  Native LAN manager: Windows Server 2012 R2 Standard 6.3
+  Platform id: null
+  Server type: null
+  Server type string: null
+errors:
+  services:
+    enum_services:
+    - 'Could not connect to LDAP on 389/tcp: connection refused'
+    - 'Could not connect to LDAPS on 636/tcp: connection refused'
+  nmblookup:
+    enum_netbios:
+    - 'Could not get NetBIOS names information via ''nmblookup'': timed out'
+  workgroup:
+    enum_netbios:
+    - 'Could not get NetBIOS names information via ''nmblookup'': timed out'
+  null_session_possible:
+    enum_sessions:
+    - 'Could not establish null session: STATUS_ACCESS_DENIED'
+    - Sessions failed, neither null nor user sessions were possible
+  random_user_session_possible:
+    enum_sessions:
+    - 'Could not establish random user session: STATUS_INVALID_PARAMETER'
+    - Sessions failed, neither null nor user sessions were possible
+  sessions_possible:
+    enum_sessions:
+    - Sessions failed, neither null nor user sessions were possible
+  user_session_possible:
+    enum_sessions:
+    - Sessions failed, neither null nor user sessions were possible
+  os_info:
+    enum_os_info:
+    - Skipping 'srvinfo' run, null or user session required
