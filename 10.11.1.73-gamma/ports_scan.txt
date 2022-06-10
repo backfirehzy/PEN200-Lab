@@ -1,0 +1,27 @@
+# Nmap 7.92 scan initiated Wed Jun  8 22:14:02 2022 as: nmap -T4 -Pn -sV -oN ports_scan.txt 10.11.1.73
+Nmap scan report for 10.11.1.73
+Host is up (0.31s latency).
+Not shown: 982 filtered tcp ports (no-response)
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Microsoft Windows 7 - 10 microsoft-ds (workgroup: WORKGROUP)
+554/tcp   open  rtsp?
+1100/tcp  open  java-rmi     Java RMI
+2869/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+3306/tcp  open  mysql?
+5357/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+5800/tcp  open  vnc-http     TightVNC (user: gamma; VNC TCP port: 5900)
+5900/tcp  open  vnc          VNC (protocol 3.8)
+8080/tcp  open  http         Apache httpd 2.4.9 ((Win32) PHP/5.5.12)
+10243/tcp open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+49152/tcp open  msrpc        Microsoft Windows RPC
+49153/tcp open  msrpc        Microsoft Windows RPC
+49154/tcp open  msrpc        Microsoft Windows RPC
+49155/tcp open  msrpc        Microsoft Windows RPC
+49156/tcp open  msrpc        Microsoft Windows RPC
+49157/tcp open  java-rmi     Java RMI
+Service Info: Host: GAMMA; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jun  8 22:17:53 2022 -- 1 IP address (1 host up) scanned in 230.71 seconds
