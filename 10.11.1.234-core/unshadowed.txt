@@ -1,0 +1,2 @@
+offsec:$6$RS7BASQ8$B3TDCufkZkpw7SEYkMTy8wjcyz63370HRDELB1Ril.AlR/nqDxyj8RlttVFp3ulBv4NMj.Ochzv524TMRZzzG0:1000:1000:offsec,,,:/home/offsec:/bin/bash
+root:$6$URgq7sJ5$4x8z9ntYTwAPCubi9YLxLQ2mZTTZKnGz0g/wWzOdPB5eGuz.S5iRtFUvfFd9VIVEWouiodB/hh9BYOLgAD8u5/:0:0:root:/root:/bin/bash

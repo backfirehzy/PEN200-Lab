@@ -1,0 +1,25 @@
+# Nmap 7.92 scan initiated Sun Jun 12 18:19:29 2022 as: nmap -T4 -sV -sU -v -oN udp_scan.txt 10.11.1.111
+Warning: 10.11.1.111 giving up on port because retransmission cap hit (6).
+Increasing send delay for 10.11.1.111 from 100 to 200 due to 11 out of 11 dropped probes since last increase.
+Increasing send delay for 10.11.1.111 from 200 to 400 due to 11 out of 11 dropped probes since last increase.
+Increasing send delay for 10.11.1.111 from 400 to 800 due to 11 out of 11 dropped probes since last increase.
+Increasing send delay for 10.11.1.111 from 800 to 1000 due to 11 out of 19 dropped probes since last increase.
+Nmap scan report for 10.11.1.111
+Host is up (0.27s latency).
+Not shown: 989 closed udp ports (port-unreach)
+PORT      STATE         SERVICE       VERSION
+69/udp    open|filtered tftp
+123/udp   open|filtered ntp
+137/udp   open|filtered netbios-ns
+138/udp   open|filtered netbios-dgm
+500/udp   open|filtered isakmp
+515/udp   open|filtered printer
+3389/udp  open|filtered ms-wbt-server
+4500/udp  open|filtered nat-t-ike
+5353/udp  open|filtered zeroconf
+5355/udp  open|filtered llmnr
+17455/udp open|filtered unknown
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Jun 12 18:41:04 2022 -- 1 IP address (1 host up) scanned in 1295.15 seconds

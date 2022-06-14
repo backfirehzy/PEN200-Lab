@@ -1,0 +1,26 @@
+# Nmap 7.92 scan initiated Mon Jun 13 20:50:43 2022 as: nmap -T4 -p- -oN ./port_scan_files/initial_scan.txt -oG - 10.11.1.223
+Warning: 10.11.1.223 giving up on port because retransmission cap hit (6).
+Nmap scan report for 10.11.1.223
+Host is up (0.24s latency).
+Not shown: 64962 closed tcp ports (conn-refused), 555 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+443/tcp   open  https
+445/tcp   open  microsoft-ds
+3306/tcp  open  mysql
+3389/tcp  open  ms-wbt-server
+5985/tcp  open  wsman
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+49670/tcp open  unknown
+49671/tcp open  unknown
+
+# Nmap done at Mon Jun 13 21:22:37 2022 -- 1 IP address (1 host up) scanned in 1914.42 seconds

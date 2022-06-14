@@ -1,0 +1,23 @@
+# directories
+http://10.11.1.223/readme.txt -> readme file
+http://10.11.1.223/install.txt
+http://10.11.1.223/dashboard/ -> XAMPP: Welcome to XAMPP for Windows 5.6.40
+http://10.11.1.223/dashboard/phpinfo.php -> phpinfo
+http://10.11.1.223/index.php?admin=login -> admin login page
+http://10.11.1.223/docs/ -> empty
+http://10.11.1.223/feeds/ -> empty  
+http://10.11.1.223/icons/README            
+http://10.11.1.223/images/ -> empty              
+http://10.11.1.223/img/ -> empty                 
+http://10.11.1.223/include/ -> access denied             
+http://10.11.1.223/index.php/ -> index page
+http://10.11.1.223/js/ -> empty                  
+http://10.11.1.223/license/ -> This folder is not directly accessible.            
+http://10.11.1.223/mails/ -> empty             
+http://10.11.1.223/modules/ -> empty             
+http://10.11.1.223/themes/ -> empty
+
+# RCE public exploit
+ApPHP MicroBlog 1.0.1 - Remote Command Execution   | php/webapps/33070.py
+
+# get shell

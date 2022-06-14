@@ -1,0 +1,25 @@
+# Nmap 7.92 scan initiated Mon Jun 13 22:50:52 2022 as: nmap -T4 -A -v -p22,80,10443 -oN ./port_scan_files/detailed_scan.txt 10.11.1.234
+Nmap scan report for 10.11.1.234
+Host is up (0.28s latency).
+
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 5.3p1 Debian 3ubuntu3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 2c:83:67:02:29:20:87:99:87:55:95:92:6c:8d:a4:a3 (DSA)
+|_  2048 6b:91:08:a8:c0:90:ac:68:bd:c9:cd:9c:be:69:2b:ac (RSA)
+80/tcp    open  http    Apache httpd 2.2.14 ((Ubuntu))
+|_http-title: Business Statistics | New Server for Thinc&#039;s Business Sta...
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.2.14 (Ubuntu)
+10443/tcp open  http    CoreHTTP httpd 0.5.3.1
+|_http-favicon: Unknown favicon MD5: C13195015360EFEA26D50D54A936BBBF
+|_http-title: Stats! Stats! Stats!
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+|_http-server-header: corehttp-0.5.3.1
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jun 13 22:51:23 2022 -- 1 IP address (1 host up) scanned in 30.88 seconds

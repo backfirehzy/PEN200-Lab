@@ -1,0 +1,20 @@
+[2K[32m                        [Status: 200, Size: 5807, Words: 334, Lines: 105, Duration: 4878ms][0m
+[2K[34mindex.php               [Status: 301, Size: 0, Words: 1, Lines: 1, Duration: 490ms][0m
+[2K[34mindex                   [Status: 301, Size: 0, Words: 1, Lines: 1, Duration: 844ms][0m
+[2K[32mlicense                 [Status: 200, Size: 19929, Words: 3334, Lines: 386, Duration: 243ms][0m
+[2K[32mreadme                  [Status: 200, Size: 9177, Words: 987, Lines: 109, Duration: 288ms][0m
+[2K[34mwp-admin                [Status: 301, Size: 313, Words: 20, Lines: 10, Duration: 245ms][0m
+[2K[34mwp-content              [Status: 301, Size: 315, Words: 20, Lines: 10, Duration: 249ms][0m
+[2K[34mwp-includes             [Status: 301, Size: 316, Words: 20, Lines: 10, Duration: 247ms][0m
+[2K[31mwp-settings             [Status: 500, Size: 0, Words: 1, Lines: 1, Duration: 252ms][0m
+[2K[32mwp-login                [Status: 200, Size: 2246, Words: 122, Lines: 58, Duration: 1219ms][0m
+[2K[32mwp-cron                 [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 1363ms][0m
+[2K[32mwp-config               [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 1371ms][0m
+[2K[32mwp-trackback            [Status: 200, Size: 135, Words: 11, Lines: 5, Duration: 1351ms][0m
+[2K[32mwp-load                 [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 1358ms][0m
+[2K[32mwp-blog-header          [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 1373ms][0m
+[2K[34mwp-signup               [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 1352ms][0m
+[2K[32mwp-links-opml           [Status: 200, Size: 228, Words: 13, Lines: 10, Duration: 1363ms][0m
+[2K[32mxmlrpc                  [Status: 200, Size: 42, Words: 6, Lines: 1, Duration: 995ms][0m
+[2K[32mxmlrpc.php              [Status: 200, Size: 42, Words: 6, Lines: 1, Duration: 994ms][0m
+[2K[31mwp-mail                 [Status: 500, Size: 4144, Words: 301, Lines: 127, Duration: 337ms][0m
